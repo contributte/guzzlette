@@ -14,5 +14,8 @@
             "name": "Martin Macho",
             "email": "matyxcz@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "classmap": ["src/"]
+    }
 }
