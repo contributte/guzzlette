@@ -1,0 +1,18 @@
+{
+    "name": "matyx/guzzlette",
+    "description": "guzzlehttp/guzzle integration to nette",
+    "require": {
+        "php": ">=5.5.0",
+        "guzzlehttp/guzzle": "~6.0",
+        "tracy/tracy": "^2.3",
+        "nette/di": "^2.3",
+        "latte/latte": "^2.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Macho",
+            "email": "matyxcz@gmail.com"
+        }
+    ]
+}
