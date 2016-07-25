@@ -1,6 +1,8 @@
 # Guzzlette
 Guzzle integration to nette framework
 
+[![Latest stable](https://img.shields.io/packagist/v/matyx/guzzlette.svg)](https://packagist.org/packages/matyx/guzzlette)
+
 Usage:
 
 ```
