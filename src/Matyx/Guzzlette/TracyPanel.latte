@@ -25,7 +25,11 @@
 					<br>
 
 					<strong>Body:</strong>
-					{\Tracy\Dumper::toHtml((string) $request->getBody(), [Tracy\Dumper::COLLAPSE_COUNT => 1, Tracy\Dumper::COLLAPSE => 1])|noescape}
+					{if $request->getHeader('Content-Type')[0] == 'application/json'}
+						{\Tracy\Dumper::toHtml(json_decode($request->getBody(), true), [Tracy\Dumper::COLLAPSE_COUNT => 1, Tracy\Dumper::COLLAPSE => 1])|noescape}
+					{else}
+						{\Tracy\Dumper::toHtml((string) $request->getBody(), [Tracy\Dumper::COLLAPSE_COUNT => 1, Tracy\Dumper::COLLAPSE => 1])|noescape}
+					{/if}
 				</td>
 				<td>
 					{$response->getStatusCode()}
