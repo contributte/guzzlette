@@ -1,11 +1,18 @@
 # Guzzlette
-Guzzle integration to nette framework
+Guzzle wrapper integration to nette framework
 
 [![Latest stable](https://img.shields.io/packagist/v/matyx/guzzlette.svg)](https://packagist.org/packages/matyx/guzzlette)
 
 Usage:
 
+1, Install via composer
+```yaml
+composer require matyx/guzlette
 ```
+
+
+2, Register service in `config.neon`:
+```yaml
 services:
 	guzzleClient: Matyx\Guzzlette\Guzzlette::createGuzzleClient(%tmpDir%, ['base_uri' = %apiBaseUri%])
 ```
