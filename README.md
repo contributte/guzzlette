@@ -14,7 +14,7 @@ composer require matyx/guzlette
 2, Register service in `config.neon`:
 ```yaml
 services:
-	guzzleClient: Matyx\Guzzlette\Guzzlette::createGuzzleClient(%tmpDir%, ['base_uri' = %apiBaseUri%])
+	guzzleClient: Matyx\Guzzlette\Guzzlette::createGuzzleClient(%tempDir%, ['base_uri' = %apiBaseUri%])
 ```
 
 
