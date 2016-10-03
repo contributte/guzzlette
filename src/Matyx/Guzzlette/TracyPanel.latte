@@ -25,7 +25,7 @@
 					<br>
 
 					<strong>Body:</strong>
-					{if $request->getHeader('Content-Type')[0] == 'application/json'}
+					{if $request->getHeader('Content-Type') && $request->getHeader('Content-Type')[0] == 'application/json'}
 						{\Tracy\Dumper::toHtml(json_decode($request->getBody(), true), [Tracy\Dumper::COLLAPSE_COUNT => 1, Tracy\Dumper::COLLAPSE => 1])|noescape}
 					{else}
 						{\Tracy\Dumper::toHtml((string) $request->getBody(), [Tracy\Dumper::COLLAPSE_COUNT => 1, Tracy\Dumper::COLLAPSE => 1])|noescape}
@@ -44,7 +44,7 @@
 					<br>
 
 					<strong>Body:</strong>
-					{if strpos($response->getHeader('Content-Type')[0], 'application/json') !== false}
+					{if $request->getHeader('Content-Type') && strpos($response->getHeader('Content-Type')[0], 'application/json') !== false}
 						{\Tracy\Dumper::toHtml(json_decode($response->getBody(), true), [
 							Tracy\Dumper::COLLAPSE_COUNT => 1,
 							Tracy\Dumper::COLLAPSE => 1]
