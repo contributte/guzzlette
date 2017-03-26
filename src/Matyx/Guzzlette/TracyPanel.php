@@ -3,6 +3,7 @@
 namespace Matyx\Guzzlette;
 
 use Latte\Engine;
+use Namshi\Cuzzle\Formatter\CurlFormatter;
 use Tracy;
 
 class TracyPanel implements Tracy\IBarPanel {
@@ -34,6 +35,7 @@ class TracyPanel implements Tracy\IBarPanel {
 
 		return $latte->renderToString(__DIR__ . '/TracyPanel.latte', [
 			'requests' => $this->requestStack->getRequests(),
+			'formatter' => new CurlFormatter(),
 		]);
 	}
 
