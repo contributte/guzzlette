@@ -1,7 +1,9 @@
 # Guzzlette
 Guzzle integration to nette framework
 
+[![Build Status](https://travis-ci.org/matyx/Guzzlette.svg?branch=master)](https://travis-ci.org/matyx/Guzzlette)
 [![Latest stable](https://img.shields.io/packagist/v/matyx/guzzlette.svg)](https://packagist.org/packages/matyx/guzzlette)
+
 
 Usage:
 
