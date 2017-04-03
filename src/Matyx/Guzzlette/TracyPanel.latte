@@ -1,5 +1,5 @@
 <h1>Guzzlette</h1>
-<div class="nette-inner">
+<div class="tracy-inner">
 	<table style="width: 100%;">
 		<tr>
 			<th>Request</th>
@@ -18,7 +18,7 @@
 					<br>
 					
 					<strong>
-						<a class="tracy-toggle" onclick="return false;" href="#nette-addons-Guzzlette-{$iterator->counter}">CURL</a>
+						<a class="tracy-toggle tracy-collapsed" href="#" data-tracy-ref="#nette-addons-Guzzlette-{$iterator->counter}">CURL</a>
 					</strong>
 					<div class="tracy-collapsed" id="nette-addons-Guzzlette-{$iterator->counter}">
 						<textarea readonly onclick="this.select();" rows="5" style="background: #F4F3F1; padding: 4px; width: 600px; resize: none;">{$formatter->format($request)}</textarea>
