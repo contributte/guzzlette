@@ -1,0 +1,12 @@
+language: php
+php:
+    - 7.0
+    - 7.1
+
+script:
+    - composer lint
+    - composer phpstan
+
+before_script:
+    # Install Nette Tester & Code Checker
+    - travis_retry composer install --no-interaction --prefer-dist
