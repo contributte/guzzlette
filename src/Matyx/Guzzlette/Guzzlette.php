@@ -6,8 +6,8 @@ use GuzzleHttp;
 use Tracy;
 
 class Guzzlette {
-	/** @var  GuzzleHttp\Client */
-	protected static $client = NULL;
+	/** @var GuzzleHttp\Client */
+	protected static $client;
 
 	/**
 	 * @param $tempDir
