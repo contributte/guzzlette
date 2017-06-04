@@ -2,11 +2,9 @@
     "name": "matyx/guzzlette",
     "description": "guzzlehttp/guzzle integration to nette",
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=5.5.0",
         "guzzlehttp/guzzle": "~6.0",
         "tracy/tracy": "^2.3",
-        "nette/di": "^2.3",
-        "latte/latte": "^2.",
         "namshi/cuzzle": "^2.0"
     },
     "license": "MIT",
@@ -22,17 +20,13 @@
         }
     },
     "require-dev": {
-        "php": ">=5.6.0",
-        "phpstan/phpstan": "^0.6.4",
-        "tracy/tracy": "^2.4",
-        "nette/di": "^2.4",
+        "php": ">=5.5.0",
         "jakub-onderka/php-parallel-lint": "^0.9.2",
         "nette/tester": "^1.7",
         "mockery/mockery": "^0.9.9"
     },
     "scripts": {
         "lint": "vendor/bin/parallel-lint src",
-        "phpstan": "vendor/bin/phpstan analyse src --level=5",
         "run-tests": "vendor/bin/tester -c tests/php-unix.ini -p php tests"
     }
 }
