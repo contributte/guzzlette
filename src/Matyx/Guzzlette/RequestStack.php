@@ -12,7 +12,7 @@ class RequestStack {
 
 	public function addRequest(Request $r) {
 		$this->requests[] = $r;
-		$this->totalTime += $r->time;
+		$this->totalTime += $r->getTime();
 	}
 
 	public function getRequests() {

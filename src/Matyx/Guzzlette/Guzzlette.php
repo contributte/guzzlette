@@ -6,57 +6,68 @@ use GuzzleHttp;
 use Tracy;
 
 class Guzzlette {
+	const FORCE_REQUEST_COLLECTION = true;
+
 	/** @var GuzzleHttp\Client */
-	protected static $client;
+	private static $client;
+
+	/** @var  \Matyx\Guzzlette\RequestStack */
+	private $requestStack;
+
+	private $forceRequestCollection = false;
+
+	private $panelRegistered = false;
 
 	/**
-	 * @param $tempDir
+	 * Guzzlette constructor.
+	 *
+	 * @param bool $forceRequestCollection
+	 * @param bool $registerTracyPanel
+	 */
+	public function __construct($forceRequestCollection = false, $registerTracyPanel = true) {
+		$this->requestStack = new RequestStack();
+		if($registerTracyPanel) {
+			$this->registerTracyPanel();
+		}
+		$this->forceRequestCollection = $forceRequestCollection;
+	}
+
+	/**
 	 * @param array $guzzleConfig
 	 * @return \GuzzleHttp\Client
-	 * @throws \Matyx\Guzzlette\GuzzletteException
 	 */
-	public static function createGuzzleClient($tempDir, $guzzleConfig = []) {
-		if(isset(static::$client)) return static::$client;
-
-		if(Tracy\Debugger::isEnabled()) {
-			$handler = NULL;
-			if(isset($guzzleConfig['handler'])) {
-				$handler = $guzzleConfig['handler'];
-				if(!($handler instanceof GuzzleHttp\HandlerStack)) {
-					throw new GuzzletteException("Handler must be instance of " . GuzzleHttp\HandlerStack::class);
-				}
-			}
-			else {
-				$handler = GuzzleHttp\HandlerStack::create();
-			}
-
-			$requestStack = new RequestStack();
-
-			Tracy\Debugger::getBar()->addPanel(new TracyPanel($tempDir, $requestStack));
-
-			$handler->push(function (callable $handler) use ($requestStack) {
-				return function ($request, array $options) use ($handler, $requestStack) {
-					Tracy\Debugger::timer();
-
-					$guzzletteRequest = new Request();
-					$guzzletteRequest->request = $request;
-
-					return $handler($request, $options)->then(function ($response) use ($requestStack, $guzzletteRequest) {
-						$guzzletteRequest->time = Tracy\Debugger::timer();
-						$guzzletteRequest->response = $response;
-
-						$requestStack->addRequest($guzzletteRequest);
-
-						return $response;
-					});
-				};
-			});
+	public function createGuzzleClient($guzzleConfig = []) {
+		if(Tracy\Debugger::isEnabled() || $this->forceRequestCollection) {
+			$handler = $this->createHandlerStack((isset($guzzleConfig['handler']) ? $guzzleConfig['handler'] : NULL));
 
 			$guzzleConfig['handler'] = $handler;
 		}
 
-		static::$client = new GuzzleHttp\Client($guzzleConfig);
+		return new GuzzleHttp\Client($guzzleConfig);
+	}
 
-		return static::$client;
+	public function createHandlerStack(GuzzleHttp\HandlerStack $handlerStack = NULL) {
+		if($handlerStack === NULL) {
+			$handlerStack = GuzzleHttp\HandlerStack::create();
+		}
+
+		$guzzletteHandler = new GuzzletteHandler($this->requestStack);
+		$handlerStack->push($guzzletteHandler);
+
+		return $handlerStack;
+	}
+
+	public function registerTracyPanel() {
+		if(!$this->panelRegistered) {
+			Tracy\Debugger::getBar()->addPanel(new TracyPanel($this->requestStack));
+			$this->panelRegistered = true;
+		}
+	}
+
+	/**
+	 * @return \Matyx\Guzzlette\RequestStack
+	 */
+	public function getRequestStack() {
+		return $this->requestStack;
 	}
 }

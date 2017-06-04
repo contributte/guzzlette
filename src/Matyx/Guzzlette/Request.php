@@ -2,13 +2,49 @@
 
 namespace Matyx\Guzzlette;
 
-class Request {
-	/** @var  \GuzzleHttp\Psr7\Request */
-	public $request;
+use Psr\Http\Message\RequestInterface;
 
-	/** @var  \GuzzleHttp\Psr7\Response */
-	public $response;
+class Request {
+	/** @var  RequestInterface */
+	private $request;
+
+	/** @var  \Psr\Http\Message\ResponseInterface */
+	private $response;
 
 	/** @var  float */
-	public $time;
+	private $time;
+
+	/**
+	 * Request constructor.
+	 *
+	 * @param \Psr\Http\Message\RequestInterface $request
+	 * @param \Psr\Http\Message\ResponseInterface $response
+	 * @param float $time
+	 */
+	public function __construct(\Psr\Http\Message\RequestInterface $request, \Psr\Http\Message\ResponseInterface $response, $time) {
+		$this->request = $request;
+		$this->response = $response;
+		$this->time = $time;
+	}
+
+	/**
+	 * @return \Psr\Http\Message\RequestInterface
+	 */
+	public function getRequest() {
+		return $this->request;
+	}
+
+	/**
+	 * @return \Psr\Http\Message\ResponseInterface
+	 */
+	public function getResponse() {
+		return $this->response;
+	}
+
+	/**
+	 * @return float
+	 */
+	public function getTime() {
+		return $this->time;
+	}
 }

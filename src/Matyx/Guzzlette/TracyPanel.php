@@ -10,16 +10,8 @@ class TracyPanel implements Tracy\IBarPanel {
 	/** @var  RequestStack */
 	protected $requestStack;
 
-	/** @var  Engine */
-	protected $latteEngine;
-
-	/** @var  string tempDir */
-	protected $tempDir;
-
-	public function __construct($tempDir, RequestStack $stack) {
+	public function __construct(RequestStack $stack) {
 		$this->requestStack = $stack;
-
-		$this->tempDir = $tempDir;
 	}
 
 	public function getTab() {
@@ -31,21 +23,15 @@ class TracyPanel implements Tracy\IBarPanel {
 	}
 
 	public function getPanel() {
-		$latte = $this->getLatteEngine();
+		$formatter = new CurlFormatter();
+		$requests = $this->requestStack->getRequests();
 
-		return $latte->renderToString(__DIR__ . '/TracyPanel.latte', [
-			'requests' => $this->requestStack->getRequests(),
-			'formatter' => new CurlFormatter(),
-		]);
+		ob_start();
+		require __DIR__ . '/TracyPanelTemplate.php';
+		$template = ob_get_contents();
+		ob_end_clean();
+
+		return $template;
 	}
 
-
-	protected function getLatteEngine() {
-		if(!isset($this->latteEngine)) {
-			$this->latteEngine = new Engine;
-			$this->latteEngine->setTempDirectory($this->tempDir);
-		}
-
-		return $this->latteEngine;
-	}
 }
