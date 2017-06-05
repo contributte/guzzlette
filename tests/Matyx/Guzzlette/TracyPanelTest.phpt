@@ -23,7 +23,7 @@ class TracyPanelTest extends TestCase {
 		$panel = new TracyPanel($stack);
 		Assert::same(false, $panel->getTab());
 
-		$client->request('GET', 'https://api.github.com/repos/stedolan/jq/commits?per_page=5');
+		$client->request('GET', 'https://matyx.net/commits.json');
 
 		Assert::same(1,count($stack->getRequests()));
 		Assert::notSame(false, $panel->getTab());
