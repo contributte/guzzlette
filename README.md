@@ -2,6 +2,7 @@
 Guzzle integration to nette framework
 
 [![Latest stable](https://img.shields.io/packagist/v/matyx/guzzlette.svg)](https://packagist.org/packages/matyx/guzzlette)
+[![Coverage Status](https://coveralls.io/repos/github/matyx/Guzzlette/badge.svg?branch=travis-ci)](https://coveralls.io/github/matyx/Guzzlette?branch=travis-ci)
 
 Usage:
 
