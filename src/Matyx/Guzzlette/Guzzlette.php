@@ -8,28 +8,12 @@ use Tracy;
 class Guzzlette {
 	const FORCE_REQUEST_COLLECTION = true;
 
-	/** @var GuzzleHttp\Client */
-	private static $client;
-
 	/** @var  \Matyx\Guzzlette\RequestStack */
 	private $requestStack;
 
-	private $forceRequestCollection = false;
-
-	private $panelRegistered = false;
-
-	/**
-	 * Guzzlette constructor.
-	 *
-	 * @param bool $forceRequestCollection
-	 * @param bool $registerTracyPanel
-	 */
-	public function __construct($forceRequestCollection = false, $registerTracyPanel = true) {
+	public function __construct() {
 		$this->requestStack = new RequestStack();
-		if($registerTracyPanel) {
-			$this->registerTracyPanel();
-		}
-		$this->forceRequestCollection = $forceRequestCollection;
+		$this->registerTracyPanel();
 	}
 
 	/**
@@ -37,16 +21,17 @@ class Guzzlette {
 	 * @return \GuzzleHttp\Client
 	 */
 	public function createGuzzleClient($guzzleConfig = []) {
-		if(Tracy\Debugger::isEnabled() || $this->forceRequestCollection) {
-			$handler = $this->createHandlerStack((isset($guzzleConfig['handler']) ? $guzzleConfig['handler'] : NULL));
-
-			$guzzleConfig['handler'] = $handler;
-		}
+		$handler = $this->createHandlerStack((isset($guzzleConfig['handler']) ? $guzzleConfig['handler'] : NULL));
+		$guzzleConfig['handler'] = $handler;
 
 		return new GuzzleHttp\Client($guzzleConfig);
 	}
 
-	public function createHandlerStack(GuzzleHttp\HandlerStack $handlerStack = NULL) {
+	/**
+	 * @param \GuzzleHttp\HandlerStack|NULL $handlerStack
+	 * @return \GuzzleHttp\HandlerStack
+	 */
+	private function createHandlerStack(GuzzleHttp\HandlerStack $handlerStack = NULL) {
 		if($handlerStack === NULL) {
 			$handlerStack = GuzzleHttp\HandlerStack::create();
 		}
@@ -57,11 +42,8 @@ class Guzzlette {
 		return $handlerStack;
 	}
 
-	public function registerTracyPanel() {
-		if(!$this->panelRegistered) {
-			Tracy\Debugger::getBar()->addPanel(new TracyPanel($this->requestStack));
-			$this->panelRegistered = true;
-		}
+	private function registerTracyPanel() {
+		Tracy\Debugger::getBar()->addPanel(new TracyPanel($this->requestStack));
 	}
 
 	/**

@@ -42,7 +42,7 @@ if(!isset($formatter)) $formatter = new \Matyx\Guzzlette\DummyFormatter();
 				<br>
 
 				<strong>Body:</strong>
-				<?php if(isset($request->getHeader('Content-Type')[0]) && $request->getHeader('Content-Type')[0] == 'application/json') { ?>
+				<?php if(isset($request->getHeader('Content-Type')[0]) && strpos($request->getHeader('Content-Type')[0], 'application/json') !== false) { ?>
 					<?= \Tracy\Dumper::toHtml(json_decode($request->getBody(), true), [Tracy\Dumper::COLLAPSE_COUNT => 1, Tracy\Dumper::COLLAPSE => 1]); ?>
 				<?php } else { ?>
 					<?= \Tracy\Dumper::toHtml((string) $request->getBody(), [Tracy\Dumper::COLLAPSE_COUNT => 1, Tracy\Dumper::COLLAPSE => 1]); ?>
@@ -61,7 +61,7 @@ if(!isset($formatter)) $formatter = new \Matyx\Guzzlette\DummyFormatter();
 				<br>
 
 				<strong>Body:</strong>
-				<?php if ($request->getHeader('Content-Type') && strpos($response->getHeader('Content-Type')[0], 'application/json') !== false) { ?>
+				<?php if ($response->getHeader('Content-Type') && strpos($response->getHeader('Content-Type')[0], 'application/json') !== false) { ?>
 					<?= \Tracy\Dumper::toHtml(json_decode($response->getBody(), true), [
 						Tracy\Dumper::COLLAPSE_COUNT => 1,
 						Tracy\Dumper::COLLAPSE => 1,
