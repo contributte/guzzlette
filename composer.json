@@ -5,7 +5,8 @@
         "php": ">=5.5.0",
         "guzzlehttp/guzzle": "~6.0",
         "tracy/tracy": "^2.3",
-        "namshi/cuzzle": "^2.0"
+        "namshi/cuzzle": "^2.0",
+        "nette/di": "^2.4"
     },
     "license": "MIT",
     "authors": [
