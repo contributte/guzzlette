@@ -21,7 +21,7 @@
         }
     },
     "require-dev": {
-        "php": ">=5.5.0",
+        "php": ">=5.6.0",
         "jakub-onderka/php-parallel-lint": "^0.9.2",
         "nette/tester": "^1.7",
         "mockery/mockery": "^0.9.9"

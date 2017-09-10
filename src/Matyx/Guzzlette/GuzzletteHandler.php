@@ -2,8 +2,6 @@
 
 namespace Matyx\Guzzlette;
 
-use Tracy;
-
 class GuzzletteHandler {
 	/** @var \Matyx\Guzzlette\RequestStack */
 	private $requestStack;
@@ -19,13 +17,13 @@ class GuzzletteHandler {
 		$requestStack = $this->requestStack;
 
 		return function ($request, array $options) use ($nextHandler, $requestStack) {
-			Tracy\Debugger::timer('Guzzlette'); //Start a timer
+			$startTime = microtime(true);
 
-			return $nextHandler($request, $options)->then(function ($response) use ($requestStack, $request) {
+			return $nextHandler($request, $options)->then(function ($response) use ($startTime, $requestStack, $request) {
 				$requestStack->addRequest(new Request(
 					$request,
 					$response,
-					Tracy\Debugger::timer('Guzzlette')
+					(microtime(true) - $startTime)
 				));
 
 				return $response;
