@@ -3,9 +3,10 @@
 namespace Matyx\Guzzlette;
 
 use GuzzleHttp;
+use Matyx\Guzzlette\Tracy\Panel;
 use Tracy;
 
-class Guzzlette {
+class ClientFactory {
 	const FORCE_REQUEST_COLLECTION = true;
 
 	/** @var  \Matyx\Guzzlette\RequestStack */
@@ -20,7 +21,7 @@ class Guzzlette {
 	 * @param array $guzzleConfig
 	 * @return \GuzzleHttp\Client
 	 */
-	public function createGuzzleClient($guzzleConfig = []) {
+	public function createClient($guzzleConfig = []) {
 		$handler = $this->createHandlerStack((isset($guzzleConfig['handler']) ? $guzzleConfig['handler'] : NULL));
 		$guzzleConfig['handler'] = $handler;
 
@@ -43,7 +44,7 @@ class Guzzlette {
 	}
 
 	private function registerTracyPanel() {
-		Tracy\Debugger::getBar()->addPanel(new TracyPanel($this->requestStack));
+		Tracy\Debugger::getBar()->addPanel(new Panel($this->requestStack));
 	}
 
 	/**

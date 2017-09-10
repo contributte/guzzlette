@@ -1,19 +1,28 @@
 <?php
 
-namespace Matyx\Guzzlette\DI;
+namespace Matyx\Guzzlette\Bridges\Nette\DI;
 
 use GuzzleHttp\Client;
-use Matyx\Guzzlette\Guzzlette;
+use Matyx\Guzzlette\ClientFactory;
 use Nette\DI\CompilerExtension;
-use Tracy\Debugger;
 
 class GuzzletteExtension extends CompilerExtension {
+
+	private $debugMode;
+
+	/**
+	 * GuzzletteExtension constructor.
+	 *
+	 * @param $debugMode
+	 */
+	public function __construct($debugMode) { $this->debugMode = $debugMode; }
+
 
 	public function loadConfiguration() {
 		/** @var \Nette\DI\ContainerBuilder $builder */
 		$builder = $this->getContainerBuilder();
 
-		if(!class_exists('Tracy\Debugger') || Debugger::$productionMode === true) {
+		if($this->debugMode !== true) {
 			$builder->addDefinition($this->prefix('client'))
 				->setClass(Client::class);
 
@@ -21,11 +30,11 @@ class GuzzletteExtension extends CompilerExtension {
 		}
 
 		$builder->addDefinition('guzzlette')
-			->setClass(Guzzlette::class);
+			->setClass(ClientFactory::class);
 
 		$builder->addDefinition($this->prefix('client'))
 			->setClass(Client::class)
-			->setFactory('@guzzlette::createGuzzleClient');
+			->setFactory('@guzzlette::createClient');
 	}
 
 }

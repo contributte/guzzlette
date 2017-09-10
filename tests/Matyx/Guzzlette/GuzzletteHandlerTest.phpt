@@ -17,7 +17,7 @@ require_once __DIR__ . '/../../bootstrap.php';
 class GuzzletteHandlerTest extends TestCase {
 
 	public function testHandler() {
-		$guzzlette = new \Matyx\Guzzlette\Guzzlette(\Matyx\Guzzlette\Guzzlette::FORCE_REQUEST_COLLECTION);
+		$guzzlette = new \Matyx\Guzzlette\ClientFactory(\Matyx\Guzzlette\ClientFactory::FORCE_REQUEST_COLLECTION);
 
 		$mock = new MockHandler([
 			new Response(200, ['X-Foo' => 'Bar']),
@@ -27,7 +27,7 @@ class GuzzletteHandlerTest extends TestCase {
 
 		$handler = HandlerStack::create($mock);
 
-		$client = $guzzlette->createGuzzleClient(['handler' => $handler]);
+		$client = $guzzlette->createClient(['handler' => $handler]);
 
 		// The first request is intercepted with the first response.
 		Assert::same(200, $client->request('GET', '/')->getStatusCode());

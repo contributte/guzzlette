@@ -10,8 +10,8 @@ Guzzle integration to nette framework
 Usage:
 
 ```
-services:
-	guzzleClient: Matyx\Guzzlette\Guzzlette::createGuzzleClient(%tmpDir%, ['base_uri' = %apiBaseUri%])
+extensions:
+	guzzlette: Matyx\Guzzlette\Bridges\Nette\DI\GuzzletteExtension(%debugMode%)
 ```
 
 
