@@ -1,12 +1,12 @@
 <?php
 
-namespace Matyx\Guzzlette;
+namespace Matyx\Guzzlette\Tracy;
 
-use Latte\Engine;
+use Matyx\Guzzlette\RequestStack;
 use Namshi\Cuzzle\Formatter\CurlFormatter;
 use Tracy;
 
-class TracyPanel implements Tracy\IBarPanel {
+class Panel implements Tracy\IBarPanel {
 	/** @var  RequestStack */
 	protected $requestStack;
 
@@ -27,7 +27,7 @@ class TracyPanel implements Tracy\IBarPanel {
 		$requests = $this->requestStack->getRequests();
 
 		ob_start();
-		require __DIR__ . '/TracyPanelTemplate.php';
+		require __DIR__ . '/PanelTemplate.php';
 		$template = ob_get_contents();
 		ob_end_clean();
 

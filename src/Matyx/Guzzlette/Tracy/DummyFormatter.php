@@ -1,6 +1,6 @@
 <?php
 
-namespace Matyx\Guzzlette;
+namespace Matyx\Guzzlette\Tracy;
 
 class DummyFormatter {
 	public function format() {

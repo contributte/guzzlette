@@ -2,7 +2,7 @@
 require_once __DIR__ . '/DummyFormatter.php';
 
 if(!isset($requests)) $requests = [];
-if(!isset($formatter)) $formatter = new \Matyx\Guzzlette\DummyFormatter();
+if(!isset($formatter)) $formatter = new \Matyx\Guzzlette\Tracy\DummyFormatter();
 ?>
 
 <h1>Guzzlette</h1>
@@ -29,7 +29,7 @@ if(!isset($formatter)) $formatter = new \Matyx\Guzzlette\DummyFormatter();
 					<a class="tracy-toggle tracy-collapsed" href="#" data-tracy-ref="#nette-addons-Guzzlette-<?= $counter; ?>">CURL</a>
 				</strong>
 				<div class="tracy-collapsed" id="nette-addons-Guzzlette-<?= $counter; ?>">
-					getReasonPhrase<textarea readonly onclick="this.select();" rows="5" style="background: #F4F3F1; padding: 4px; width: 600px; resize: none;"><?= htmlspecialchars($formatter->format($request), ENT_QUOTES); ?></textarea>
+					<textarea readonly onclick="this.focus();this.select();" rows="5" style="background: #F4F3F1; padding: 4px; width: 600px; resize: none;"><?= htmlspecialchars($formatter->format($request), ENT_QUOTES); ?></textarea>
 				</div>
 
 				<br>

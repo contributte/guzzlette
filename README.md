@@ -6,12 +6,16 @@ Guzzle integration to nette framework
 [![Build Status](https://travis-ci.org/matyx/Guzzlette.svg?branch=master)](https://travis-ci.org/matyx/Guzzlette)
 [![Coverage Status](https://coveralls.io/repos/github/matyx/Guzzlette/badge.svg?branch=travis-ci)](https://coveralls.io/github/matyx/Guzzlette?branch=travis-ci)
 
-
-Usage:
-
+## Installation:
 ```
-services:
-	guzzleClient: Matyx\Guzzlette\Guzzlette::createGuzzleClient(%tmpDir%, ['base_uri' = %apiBaseUri%])
+composer require matyx/guzzlette
+```
+
+## Usage:
+Add following to your `config.neon`:
+```
+extensions:
+	guzzlette: Matyx\Guzzlette\Bridges\Nette\DI\GuzzletteExtension(%debugMode%)
 ```
 
 
