@@ -19,7 +19,8 @@ require_once __DIR__ . '/../../bootstrap.php';
 class TracyPanelTest extends TestCase {
 
 	public function testTracyPanel() {
-		$guzzlette = new \Matyx\Guzzlette\ClientFactory(\Matyx\Guzzlette\ClientFactory::FORCE_REQUEST_COLLECTION);
+		$requestStack = new RequestStack();
+		$guzzlette = new \Matyx\Guzzlette\ClientFactory($requestStack);
 
 		$mock = new MockHandler([
 			new Response(200, ['X-Foo' => 'Bar', 'Content-Type' => 'application/json'], '{"status": "ok"}'),
@@ -30,15 +31,13 @@ class TracyPanelTest extends TestCase {
 
 		$client = $guzzlette->createClient(['handler' => $handler]);
 
-		$stack = $guzzlette->getRequestStack();
-
-		$panel = new Panel($stack);
+		$panel = new Panel($requestStack);
 		Assert::same(false, $panel->getTab());
 
 		$client->request('GET', '/');
 		$client->request('GET', '/');
 
-		Assert::same(2,count($stack->getRequests()));
+		Assert::same(2,count($requestStack->getRequests()));
 		Assert::notSame(false, $panel->getTab());
 
 		// Is panel rendering OK?

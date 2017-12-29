@@ -12,8 +12,8 @@ class ClientFactory {
 	/** @var  \Matyx\Guzzlette\RequestStack */
 	private $requestStack;
 
-	public function __construct() {
-		$this->requestStack = new RequestStack();
+	public function __construct(RequestStack $requestStack) {
+		$this->requestStack = $requestStack;
 		$this->registerTracyPanel();
 	}
 
@@ -45,12 +45,5 @@ class ClientFactory {
 
 	private function registerTracyPanel() {
 		Tracy\Debugger::getBar()->addPanel(new Panel($this->requestStack));
-	}
-
-	/**
-	 * @return \Matyx\Guzzlette\RequestStack
-	 */
-	public function getRequestStack() {
-		return $this->requestStack;
 	}
 }

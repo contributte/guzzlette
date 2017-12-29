@@ -4,6 +4,7 @@ namespace Matyx\Guzzlette\Bridges\Nette\DI;
 
 use GuzzleHttp\Client;
 use Matyx\Guzzlette\ClientFactory;
+use Matyx\Guzzlette\RequestStack;
 use Nette\DI\CompilerExtension;
 
 class GuzzletteExtension extends CompilerExtension {
@@ -29,12 +30,17 @@ class GuzzletteExtension extends CompilerExtension {
 			return;
 		}
 
-		$builder->addDefinition('guzzlette')
-			->setClass(ClientFactory::class);
+		$builder->addDefinition($this->prefix('requestStack'))
+			->setClass(RequestStack::class)
+			->setAutowired(false);
+
+		$builder->addDefinition($this->prefix('clientFactory'))
+			->setClass(ClientFactory::class, [$builder->getDefinition($this->prefix('requestStack'))]);
+
 
 		$builder->addDefinition($this->prefix('client'))
 			->setClass(Client::class)
-			->setFactory('@guzzlette::createClient');
+			->setFactory('@' . $this->prefix('clientFactory') . '::createClient');
 	}
 
 }

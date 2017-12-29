@@ -6,6 +6,7 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use Matyx\Guzzlette\ClientFactory;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -17,7 +18,8 @@ require_once __DIR__ . '/../../bootstrap.php';
 class GuzzletteHandlerTest extends TestCase {
 
 	public function testHandler() {
-		$guzzlette = new \Matyx\Guzzlette\ClientFactory(\Matyx\Guzzlette\ClientFactory::FORCE_REQUEST_COLLECTION);
+		$requestStack = new RequestStack();
+		$guzzlette = new ClientFactory($requestStack);
 
 		$mock = new MockHandler([
 			new Response(200, ['X-Foo' => 'Bar']),
@@ -33,9 +35,8 @@ class GuzzletteHandlerTest extends TestCase {
 		Assert::same(200, $client->request('GET', '/')->getStatusCode());
 		Assert::same(202, $client->request('GET', '/')->getStatusCode());
 
-		$stack = $guzzlette->getRequestStack();
-		Assert::same(2, count($stack->getRequests()));
-		Assert::notSame(0.0, $stack->getTotalTime());
+		Assert::same(2, count($requestStack->getRequests()));
+		Assert::notSame(0.0, $requestStack->getTotalTime());
 	}
 }
 
