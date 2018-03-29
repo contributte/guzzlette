@@ -1,8 +1,12 @@
 <?php
 require_once __DIR__ . '/DummyFormatter.php';
 
-if(!isset($requests)) $requests = [];
-if(!isset($formatter)) $formatter = new \Matyx\Guzzlette\Tracy\DummyFormatter();
+if (!isset($requests)) {
+	$requests = [];
+}
+if (!isset($formatter)) {
+	$formatter = new \Matyx\Guzzlette\Tracy\DummyFormatter();
+}
 ?>
 
 <h1>Guzzlette</h1>
@@ -14,7 +18,8 @@ if(!isset($formatter)) $formatter = new \Matyx\Guzzlette\Tracy\DummyFormatter();
 			<th>Time</th>
 		</tr>
 		<?php $counter = 0; ?>
-		<?php foreach($requests as $r) { ?>
+		<?php foreach ($requests as $r) {
+	?>
 		<?php $response = $r->getResponse(); ?>
 		<?php $response = $r->getResponse(); ?>
 		<?php $request = $r->getRequest(); ?>
@@ -42,11 +47,14 @@ if(!isset($formatter)) $formatter = new \Matyx\Guzzlette\Tracy\DummyFormatter();
 				<br>
 
 				<strong>Body:</strong>
-				<?php if(isset($request->getHeader('Content-Type')[0]) && strpos($request->getHeader('Content-Type')[0], 'application/json') !== false) { ?>
+				<?php if (isset($request->getHeader('Content-Type')[0]) && strpos($request->getHeader('Content-Type')[0], 'application/json') !== false) {
+					?>
 					<?= \Tracy\Dumper::toHtml(json_decode($request->getBody(), true), [Tracy\Dumper::COLLAPSE_COUNT => 1, Tracy\Dumper::COLLAPSE => 1]); ?>
-				<?php } else { ?>
+				<?php } else {
+						?>
 					<?= \Tracy\Dumper::toHtml((string) $request->getBody(), [Tracy\Dumper::COLLAPSE_COUNT => 1, Tracy\Dumper::COLLAPSE => 1]); ?>
-				<?php } ?>
+				<?php
+					} ?>
 			</td>
 			<td>
 				<?= htmlspecialchars($response->getStatusCode(), ENT_QUOTES); ?>
@@ -61,20 +69,24 @@ if(!isset($formatter)) $formatter = new \Matyx\Guzzlette\Tracy\DummyFormatter();
 				<br>
 
 				<strong>Body:</strong>
-				<?php if ($response->getHeader('Content-Type') && strpos($response->getHeader('Content-Type')[0], 'application/json') !== false) { ?>
+				<?php if ($response->getHeader('Content-Type') && strpos($response->getHeader('Content-Type')[0], 'application/json') !== false) {
+					?>
 					<?= \Tracy\Dumper::toHtml(json_decode($response->getBody(), true), [
 						Tracy\Dumper::COLLAPSE_COUNT => 1,
 						Tracy\Dumper::COLLAPSE => 1,
 					]); ?>
-				<?php } else { ?>
+				<?php } else {
+						?>
 					<?= \Tracy\Dumper::toHtml((string) $response->getBody(), [
 						Tracy\Dumper::COLLAPSE_COUNT => 1,
 						Tracy\Dumper::COLLAPSE => 1,
 					]); ?>
-				<?php } ?>
+				<?php
+					} ?>
 			</td>
 			<td><?= ($r->getTime() ? sprintf('%0.1f ms', $r->getTime() * 1000) : ''); ?></td>
 		</tr>
-		<?php } ?>
+		<?php
+} ?>
 	</table>
 </div>
