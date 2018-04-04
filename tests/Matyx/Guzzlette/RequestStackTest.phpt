@@ -12,9 +12,10 @@ require_once __DIR__ . '/../../bootstrap.php';
 /**
  * @testCase
  */
-class RequestStackTest extends TestCase {
-
-	public function testStack() {
+class RequestStackTest extends TestCase
+{
+	public function testStack()
+	{
 		$requestMock = \Mockery::mock(RequestInterface::class);
 		$responseMock = \Mockery::mock(ResponseInterface::class);
 
@@ -28,7 +29,6 @@ class RequestStackTest extends TestCase {
 
 		Assert::equal(40, $stack->getTotalTime());
 		Assert::equal(4, count($stack->getRequests()));
-
 	}
 }
 

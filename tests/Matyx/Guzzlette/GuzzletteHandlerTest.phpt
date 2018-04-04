@@ -15,16 +15,17 @@ require_once __DIR__ . '/../../bootstrap.php';
 /**
  * @testCase
  */
-class GuzzletteHandlerTest extends TestCase {
-
-	public function testHandler() {
+class GuzzletteHandlerTest extends TestCase
+{
+	public function testHandler()
+	{
 		$requestStack = new RequestStack();
 		$guzzlette = new ClientFactory($requestStack);
 
 		$mock = new MockHandler([
 			new Response(200, ['X-Foo' => 'Bar']),
 			new Response(202, ['Content-Length' => 0]),
-			new RequestException("Error Communicating with Server", new \GuzzleHttp\Psr7\Request('GET', 'test'))
+			new RequestException('Error Communicating with Server', new \GuzzleHttp\Psr7\Request('GET', 'test')),
 		]);
 
 		$handler = HandlerStack::create($mock);

@@ -16,11 +16,15 @@ require_once __DIR__ . '/../../bootstrap.php';
 /**
  * @testCase
  */
-class GuzzletteExtensionTest extends TestCase {
-
-	public function testExtensionDebug() {
+class GuzzletteExtensionTest extends TestCase
+{
+	public function testExtensionDebug()
+	{
 		$loader = new ContainerLoader(TEMP_DIR, true);
 		$class = $loader->load(function (Compiler $compiler) {
+			$compiler->addConfig(['parameters' => [
+				'debugMode' => true,
+			]]);
 			$compiler->addExtension('guzzlette', new GuzzletteExtension(true));
 		}, [microtime(), 1]);
 
@@ -31,9 +35,15 @@ class GuzzletteExtensionTest extends TestCase {
 		Assert::count(1, $container->findByType(ClientFactory::class));
 	}
 
-	public function testExtensionProduction() {
+
+	public function testExtensionProduction()
+	{
 		$loader = new ContainerLoader(TEMP_DIR, true);
 		$class = $loader->load(function (Compiler $compiler) {
+			$compiler->addConfig(['parameters' => [
+				'debugMode' => false,
+			]]);
+
 			$compiler->addExtension('guzzlette', new GuzzletteExtension(false));
 		}, [microtime(), 1]);
 

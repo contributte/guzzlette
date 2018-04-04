@@ -6,8 +6,6 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Matyx\Guzzlette\Tracy\Panel;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -16,9 +14,10 @@ require_once __DIR__ . '/../../bootstrap.php';
 /**
  * @testCase
  */
-class TracyPanelTest extends TestCase {
-
-	public function testTracyPanel() {
+class TracyPanelTest extends TestCase
+{
+	public function testTracyPanel()
+	{
 		$requestStack = new RequestStack();
 		$guzzlette = new \Matyx\Guzzlette\ClientFactory($requestStack);
 
@@ -37,7 +36,7 @@ class TracyPanelTest extends TestCase {
 		$client->request('GET', '/');
 		$client->request('GET', '/');
 
-		Assert::same(2,count($requestStack->getRequests()));
+		Assert::same(2, count($requestStack->getRequests()));
 		Assert::notSame(false, $panel->getTab());
 
 		// Is panel rendering OK?
