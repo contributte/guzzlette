@@ -16,11 +16,11 @@ Add following to your `config.neon`:
 extensions:
 	guzzlette: Matyx\Guzzlette\Bridges\Nette\DI\GuzzletteExtension
 	
-	
+# Optional
 guzzlette:
-	timeout: 30 # 
-	debugger: true # enable debugger - default autodetect
-	someGuzzleConfigParameter: false # all guzzle config directives are supported
+	debugger: true # force debugger - default autodetect
+	timeout: 30 
+	anotherGuzzleConfigParameter: false # all guzzle config directives are supported
 ```
 
 
