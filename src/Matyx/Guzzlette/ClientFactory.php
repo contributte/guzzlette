@@ -13,10 +13,14 @@ class ClientFactory
 	/** @var  \Matyx\Guzzlette\RequestStack */
 	private $requestStack;
 
+	/** @var bool  */
+	private $enableDebugger;
 
-	public function __construct(RequestStack $requestStack)
+
+	public function __construct(RequestStack $requestStack, $enableDebugger = false)
 	{
 		$this->requestStack = $requestStack;
+		$this->enableDebugger = $enableDebugger;
 		$this->registerTracyPanel();
 	}
 
@@ -25,12 +29,14 @@ class ClientFactory
 	 * @param array $guzzleConfig
 	 * @return \GuzzleHttp\Client
 	 */
-	public function createClient($guzzleConfig = [])
+	public function createClient($config = [])
 	{
-		$handler = $this->createHandlerStack((isset($guzzleConfig['handler']) ? $guzzleConfig['handler'] : null));
-		$guzzleConfig['handler'] = $handler;
+		if ($this->enableDebugger) {
+			$handler = $this->createHandlerStack((isset($config['handler']) ? $config['handler'] : null));
+			$config['handler'] = $handler;
+		}
 
-		return new GuzzleHttp\Client($guzzleConfig);
+		return new GuzzleHttp\Client($config);
 	}
 
 
