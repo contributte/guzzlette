@@ -19,7 +19,7 @@ class TracyPanelTest extends TestCase
 	public function testTracyPanel()
 	{
 		$requestStack = new RequestStack();
-		$guzzlette = new \Matyx\Guzzlette\ClientFactory($requestStack);
+		$guzzlette = new \Matyx\Guzzlette\ClientFactory($requestStack, true);
 
 		$mock = new MockHandler([
 			new Response(200, ['X-Foo' => 'Bar', 'Content-Type' => 'application/json'], '{"status": "ok"}'),

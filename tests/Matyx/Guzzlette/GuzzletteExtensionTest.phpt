@@ -51,7 +51,7 @@ class GuzzletteExtensionTest extends TestCase
 		$container = new $class;
 
 		Assert::count(1, $container->findByType(Client::class));
-		Assert::count(0, $container->findByType(ClientFactory::class));
+		Assert::count(1, $container->findByType(ClientFactory::class));
 	}
 }
 

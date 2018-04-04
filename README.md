@@ -14,7 +14,13 @@ composer require matyx/guzzlette
 Add following to your `config.neon`:
 ```
 extensions:
-	guzzlette: Matyx\Guzzlette\Bridges\Nette\DI\GuzzletteExtension(%debugMode%)
+	guzzlette: Matyx\Guzzlette\Bridges\Nette\DI\GuzzletteExtension
+	
+	
+guzzlette:
+	timeout: 30 # 
+	debugger: true # enable debugger - default autodetect
+	someGuzzleConfigParameter: false # all guzzle config directives are supported
 ```
 
 
