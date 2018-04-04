@@ -7,11 +7,13 @@ php:
 
 script:
     - composer lint
+    - if [ $TRAVIS_PHP_VERSION == "7.1" ]; then temp/nette-coding-standard/ecs check src tests --config temp/nette-coding-standard/coding-standard-php56.neon; fi
     - vendor/bin/tester tests -s -p php $coverage
 
 before_script:
     - travis_retry composer install --no-interaction --prefer-dist
-    - if [ $TRAVIS_PHP_VERSION == "7.0" ]; then coverage="-p phpdbg --coverage ./coverage.xml --coverage-src ./src"; fi
+    - if [ $TRAVIS_PHP_VERSION == "7.1" ]; then composer create-project nette/coding-standard temp/nette-coding-standard; fi
+    - if [ $TRAVIS_PHP_VERSION == "7.1" ]; then coverage="-p phpdbg --coverage ./coverage.xml --coverage-src ./src"; fi
 
 after_script:
     # Report Code Coverage
