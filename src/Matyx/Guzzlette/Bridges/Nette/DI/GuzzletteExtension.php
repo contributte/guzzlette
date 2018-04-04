@@ -19,14 +19,14 @@ class GuzzletteExtension extends CompilerExtension
 	private $debugMode = false;
 
 
-	   /**
-	    * @param $debugMode
-	    * @deprecated please configure using debugger extension parameter
-	    */
-	   public function __construct($debugMode = false)
-	   {
-	   	$this->debugMode = $debugMode;
-	   }
+	/**
+	 * @param bool $debugMode
+	 * @deprecated please configure using debugger extension parameter
+	 */
+	public function __construct($debugMode = false)
+	{
+		$this->debugMode = $debugMode;
+	}
 
 
 	public function loadConfiguration()

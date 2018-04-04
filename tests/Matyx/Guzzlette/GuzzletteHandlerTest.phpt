@@ -13,7 +13,7 @@ use Tester\TestCase;
 require_once __DIR__ . '/../../bootstrap.php';
 
 /**
- * @testCase
+ * @TestCase
  */
 class GuzzletteHandlerTest extends TestCase
 {
