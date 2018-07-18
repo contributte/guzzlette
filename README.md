@@ -46,6 +46,13 @@ composer require contributte/guzzlette
   <tbody>
     <tr>
       <td align="center">
+        <a href="https://github.com/matyx">
+            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/7956225?s=460&v=4">
+        </a>
+        </br>
+        <a href="https://github.com/matyx">Martin Matyx Macho</a>
+      </td>
+      <td align="center">
         <a href="https://github.com/mabar">
             <img width="150" height="150" src="https://avatars0.githubusercontent.com/u/20974277?s=400&v=4">
         </a>
