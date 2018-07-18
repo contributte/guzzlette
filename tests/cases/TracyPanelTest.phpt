@@ -1,25 +1,28 @@
-<?php
+<?php declare(strict_types = 1);
 
-namespace Matyx\Guzzlette;
+namespace Tests\Contributte\Guzzlette;
 
+use Contributte\Guzzlette\ClientFactory;
+use Contributte\Guzzlette\SnapshotStack;
+use Contributte\Guzzlette\Tracy\Panel;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use Matyx\Guzzlette\Tracy\Panel;
 use Tester\Assert;
 use Tester\TestCase;
 
-require_once __DIR__ . '/../../bootstrap.php';
+require_once __DIR__ . '/../bootstrap.php';
 
 /**
  * @TestCase
  */
 class TracyPanelTest extends TestCase
 {
-	public function testTracyPanel()
+
+	public function testTracyPanel(): void
 	{
-		$requestStack = new RequestStack();
-		$guzzlette = new \Matyx\Guzzlette\ClientFactory($requestStack, true);
+		$snapshotStack = new SnapshotStack();
+		$factory = new ClientFactory($snapshotStack, true);
 
 		$mock = new MockHandler([
 			new Response(200, ['X-Foo' => 'Bar', 'Content-Type' => 'application/json'], '{"status": "ok"}'),
@@ -28,20 +31,21 @@ class TracyPanelTest extends TestCase
 
 		$handler = HandlerStack::create($mock);
 
-		$client = $guzzlette->createClient(['handler' => $handler]);
+		$client = $factory->createClient(['handler' => $handler]);
 
-		$panel = new Panel($requestStack);
-		Assert::same(false, $panel->getTab());
+		$panel = new Panel($snapshotStack);
+		Assert::same('', $panel->getTab());
 
 		$client->request('GET', '/');
 		$client->request('GET', '/');
 
-		Assert::same(2, count($requestStack->getRequests()));
-		Assert::notSame(false, $panel->getTab());
+		Assert::same(2, count($snapshotStack->getSnapshots()));
+		Assert::notSame('', $panel->getTab());
 
 		// Is panel rendering OK?
 		$panel->getPanel();
 	}
+
 }
 
 

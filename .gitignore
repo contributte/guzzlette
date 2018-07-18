@@ -1,3 +1,13 @@
-/vendor/
-/tests/tmp/*
-/tests/Matyx/Guzzlette/output/*
+# IDE
+/.idea
+
+# Composer
+/vendor
+/composer.lock
+
+# Tests
+/temp/
+/tests/*.log
+/tests/tmp
+/tests/coverage.html
+/coverage.xml
