@@ -26,8 +26,8 @@ guzzle:
 
 ## Implementation
 
-Get guzzle from DIC instead of creating new one.
-Everything other is in Guzzle documentation.
+Get guzzle from DIC instead of creating a new one.
+Everything else is in Guzzle documentation.
 
 ```php
 
