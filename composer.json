@@ -24,7 +24,7 @@
     "namshi/cuzzle": "^2.0.3",
     "nette/di": "~2.4.13",
     "nette/utils": "~2.5.2",
-    "tracy/tracy": "~2.4.16|~2.5.1"
+    "tracy/tracy": "~2.4.16|~2.5.1|~2.6.0"
   },
   "require-dev": {
     "ninjify/qa": "^0.8.0",
