@@ -19,7 +19,7 @@
     }
   ],
   "require": {
-    "php": ">=7.1.0",
+    "php": "^7.2",
     "guzzlehttp/guzzle": "^6.3.3",
     "namshi/cuzzle": "^2.0.3",
     "nette/di": "~2.4.13 | ^3.0",
@@ -27,9 +27,14 @@
     "tracy/tracy": "~2.4.16|~2.5.1|~2.6.0"
   },
   "require-dev": {
-    "ninjify/qa": "^0.8.0",
+    "mockery/mockery": "^0.9.9",
     "ninjify/nunjuck": "^0.2.0",
-    "mockery/mockery": "^0.9.9"
+    "ninjify/qa": "^0.8.0",
+    "phpstan/extension-installer": "^1.0",
+    "phpstan/phpstan-deprecation-rules": "^0.11",
+    "phpstan/phpstan-nette": "^0.11",
+    "phpstan/phpstan-shim": "^0.11",
+    "phpstan/phpstan-strict-rules": "^0.11"
   },
   "autoload": {
     "psr-4": {
@@ -38,27 +43,8 @@
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
-  "scripts": {
-    "qa": [
-      "linter src tests",
-      "codesniffer src tests"
-    ],
-    "tests": [
-      "tester -s -p php --colors 1 -C tests/cases"
-    ],
-    "coverage": [
-      "tester -s -p phpdbg --colors 1 -C --coverage ./coverage.xml --coverage-src ./src tests/cases"
-    ],
-    "phpstan-install": [
-      "mkdir -p temp/phpstan",
-      "composer require -d temp/phpstan phpstan/phpstan:^0.11",
-      "composer require -d temp/phpstan phpstan/phpstan-deprecation-rules:^0.11",
-      "composer require -d temp/phpstan phpstan/phpstan-nette:^0.11",
-      "composer require -d temp/phpstan phpstan/phpstan-strict-rules:^0.11"
-    ],
-    "phpstan": [
-      "temp/phpstan/vendor/bin/phpstan analyse -l max -c phpstan.neon src"
-    ]
+  "config": {
+    "sort-packages": true
   },
   "extra": {
     "branch-alias": {

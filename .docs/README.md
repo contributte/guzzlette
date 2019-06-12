@@ -1,14 +1,18 @@
-# Guzzlette
+# Contributte Guzzlette
 
 [Guzzle](https://github.com/guzzle/guzzle) integration into Nette Framework
 
 ## Content
 
-- [Usage - how to register](#usage)
-- [Configuration - how to configure](#configuration)
-- [Implementation - how to work with guzzle](/.docs/README.md#implementation)
+- [Setup](#usage)
+- [Configuration](#configuration)
+- [Implementation](#implementation)
 
-## Usage
+## Setup
+
+```bash
+composer require contributte/guzzlette
+```
 
 ```yaml
 extensions:
