@@ -1,4 +1,0 @@
-parameters:
-	ignoreErrors:
-		- message: '~^Call to deprecated method validateConfig\(\) of class Nette\\DI\\CompilerExtension\.$~'
-		  path: %currentWorkingDirectory%/src/DI/GuzzleExtension.php
