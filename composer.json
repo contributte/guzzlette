@@ -23,7 +23,7 @@
     "guzzlehttp/guzzle": "^6.3.3",
     "namshi/cuzzle": "^2.0.3",
     "nette/di": "~3.0.0",
-    "tracy/tracy": "~2.6.0"
+    "tracy/tracy": "~2.6.0|~2.7.0"
   },
   "require-dev": {
     "mockery/mockery": "^0.9.9",
