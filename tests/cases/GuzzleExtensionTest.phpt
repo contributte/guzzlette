@@ -41,7 +41,7 @@ class GuzzleExtensionTest extends TestCase
 		$loader = new ContainerLoader(TEMP_DIR, true);
 		$class = $loader->load(function (Compiler $compiler): void {
 			$compiler->addConfig(['guzzle' => [
-				'debug' => true,
+				'debug' => false,
 			]]);
 			$compiler->addExtension('guzzle', new GuzzleExtension());
 		}, [getmypid(), 2]);
