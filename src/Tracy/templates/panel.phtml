@@ -6,8 +6,7 @@
 			<th>Reponse</th>
 			<th>Time</th>
 		</tr>
-		<?php $counter = 0; ?>
-		<?php foreach ($snapshots as $snapshot) {
+		<?php foreach ($snapshots as $counter => $snapshot) {
 			?>
 			<?php $response = $snapshot->getResponse(); ?>
 			<?php $request = $snapshot->getRequest(); ?>
