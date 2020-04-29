@@ -18,7 +18,7 @@ csf: vendor
 	vendor/bin/codefixer src tests
 
 phpstan: vendor
-	vendor/bin/phpstan analyse -l max -c phpstan.neon src
+	vendor/bin/phpstan analyse
 
 tests: vendor
 	vendor/bin/tester -s -p php --colors 1 -C tests/cases
