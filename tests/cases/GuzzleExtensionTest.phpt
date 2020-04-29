@@ -23,9 +23,11 @@ class GuzzleExtensionTest extends TestCase
 	{
 		$loader = new ContainerLoader(TEMP_DIR, true);
 		$class = $loader->load(function (Compiler $compiler): void {
-			$compiler->addConfig(['guzzle' => [
-				'debug' => true,
-			]]);
+			$compiler->addConfig([
+				'guzzle' => [
+					'debug' => true,
+				],
+			]);
 			$compiler->addExtension('guzzle', new GuzzleExtension());
 		}, [getmypid(), 1]);
 
@@ -40,9 +42,11 @@ class GuzzleExtensionTest extends TestCase
 	{
 		$loader = new ContainerLoader(TEMP_DIR, true);
 		$class = $loader->load(function (Compiler $compiler): void {
-			$compiler->addConfig(['guzzle' => [
-				'debug' => false,
-			]]);
+			$compiler->addConfig([
+				'guzzle' => [
+					'debug' => false,
+				],
+			]);
 			$compiler->addExtension('guzzle', new GuzzleExtension());
 		}, [getmypid(), 2]);
 
