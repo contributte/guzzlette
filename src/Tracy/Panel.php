@@ -32,7 +32,6 @@ class Panel implements Tracy\IBarPanel
 
 	public function getPanel(): string
 	{
-		$formatter = new CurlFormatter();
 		$snapshots = $this->snapshotStack->getSnapshots();
 
 		ob_start();
