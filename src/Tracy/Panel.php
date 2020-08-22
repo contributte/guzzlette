@@ -3,7 +3,6 @@
 namespace Contributte\Guzzlette\Tracy;
 
 use Contributte\Guzzlette\SnapshotStack;
-use Namshi\Cuzzle\Formatter\CurlFormatter;
 use Tracy;
 
 class Panel implements Tracy\IBarPanel
