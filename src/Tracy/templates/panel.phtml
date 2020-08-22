@@ -17,17 +17,6 @@
 					<?= htmlspecialchars($request->getUri(), ENT_QUOTES); ?>
 					<br>
 
-					<strong>
-						<a class="tracy-toggle tracy-collapsed" href="#"
-						   data-tracy-ref="#nette-addons-Guzzlette-<?= $counter; ?>">CURL</a>
-					</strong>
-					<div class="tracy-collapsed" id="nette-addons-Guzzlette-<?= $counter; ?>">
-						<textarea readonly onclick="this.focus();this.select();" rows="5"
-								  style="background: #F4F3F1; padding: 4px; width: 600px; resize: none;"><?= htmlspecialchars($formatter->format($request), ENT_QUOTES); ?></textarea>
-					</div>
-
-					<br>
-
 					<strong>Headers:</strong>
 					<?= \Tracy\Dumper::toHtml($request->getHeaders(), [
 						\Tracy\Dumper::COLLAPSE_COUNT => 1,

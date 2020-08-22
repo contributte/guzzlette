@@ -3,7 +3,6 @@
 namespace Contributte\Guzzlette\Tracy;
 
 use Contributte\Guzzlette\SnapshotStack;
-use Namshi\Cuzzle\Formatter\CurlFormatter;
 use Tracy;
 
 class Panel implements Tracy\IBarPanel
@@ -32,7 +31,6 @@ class Panel implements Tracy\IBarPanel
 
 	public function getPanel(): string
 	{
-		$formatter = new CurlFormatter();
 		$snapshots = $this->snapshotStack->getSnapshots();
 
 		ob_start();
