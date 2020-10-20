@@ -28,8 +28,8 @@
 
 | State       | Version | Branch   | Nette | PHP     | |
 |-------------|---------|----------|-------|---------|-|
-| dev         | `^3.1`  | `master` | 3.0+  | `^7.2`  | |
-| stable      | `^3.0`  | `master` | 3.0+  | `^7.2`  | |
+| dev         | `^3.2`  | `master` | 3.0+  | `^7.2`  | |
+| stable      | `^3.1`  | `master` | 3.0+  | `^7.2`  | |
 | stable      | `^2.0`  | `master` | 2.4   | `>=7.1` | |
 | stable      | `^1.1`  | `master` | 2.4   | `>=5.6` | (old namespace) |
 
@@ -39,18 +39,18 @@
   <tbody>
     <tr>
       <td align="center">
+        <a href="https://github.com/f3l1x">
+            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=150">
+        </a>
+        </br>
+        <a href="https://github.com/f3l1x">Milan Felix Šulc</a>
+      </td>
+      <td align="center">
         <a href="https://github.com/matyx">
             <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/7956225?s=150&v=4">
         </a>
         </br>
         <a href="https://github.com/matyx">Martin Matyx Macho</a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/mabar">
-            <img width="150" height="150" src="https://avatars0.githubusercontent.com/u/20974277?s=150&v=4">
-        </a>
-        </br>
-        <a href="https://github.com/mabar">Marek Bartoš</a>
       </td>
     </tr>
   </tbody>

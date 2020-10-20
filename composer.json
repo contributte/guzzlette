@@ -10,12 +10,12 @@
   "homepage": "https://github.com/contributte/guzzlette",
   "authors": [
     {
-      "name": "Martin Macho",
-      "email": "matyxcz@gmail.com"
+      "name": "Milan Felix Šulc",
+      "homepage": "https://f3l1x.io"
     },
     {
-      "name": "Marek Bartoš",
-      "email": "bartos.developer152@gmail.com"
+      "name": "Martin Macho",
+      "email": "matyxcz@gmail.com"
     }
   ],
   "require": {
@@ -46,7 +46,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "3.1.x-dev"
+      "dev-master": "3.2.x-dev"
     }
   }
 }
