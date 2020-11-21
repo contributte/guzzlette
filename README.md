@@ -28,7 +28,7 @@
 
 | State       | Version | Branch   | Nette | PHP     | |
 |-------------|---------|----------|-------|---------|-|
-| dev         | `^3.2`  | `master` | 3.0+  | `^7.2`  | |
+| dev         | `^3.2`  | `master` | 3.0+  | `>=7.2`  | |
 | stable      | `^3.1`  | `master` | 3.0+  | `^7.2`  | |
 | stable      | `^2.0`  | `master` | 2.4   | `>=7.1` | |
 | stable      | `^1.1`  | `master` | 2.4   | `>=5.6` | (old namespace) |
