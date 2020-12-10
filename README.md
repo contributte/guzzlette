@@ -1,59 +1,60 @@
-# Contributte Guzzlette
+![](https://heatbadger.now.sh/github/readme/contributte/guzzlette/)
 
-[Guzzle](https://github.com/guzzle/guzzle) integration into Nette Framework
+<p align=center>
+  <a href="https://github.com/contributte/guzzlette/actions"><img src="https://badgen.net/github/checks/contributte/guzzlette/master?cache=300"></a>
+  <a href="https://coveralls.io/r/contributte/guzzlette"><img src="https://badgen.net/coveralls/c/github/contributte/guzzlette?cache=300"></a>
+  <a href="https://packagist.org/packages/contributte/guzzlette"><img src="https://badgen.net/packagist/dm/contributte/guzzlette"></a>
+  <a href="https://packagist.org/packages/contributte/guzzlette"><img src="https://badgen.net/packagist/v/contributte/guzzlette"></a>
+</p>
+<p align=center>
+  <a href="https://packagist.org/packages/contributte/guzzlette"><img src="https://badgen.net/packagist/php/contributte/guzzlette"></a>
+  <a href="https://github.com/contributte/guzzlette"><img src="https://badgen.net/github/license/contributte/guzzlette"></a>
+  <a href="https://bit.ly/ctteg"><img src="https://badgen.net/badge/support/gitter/cyan"></a>
+  <a href="https://bit.ly/cttfo"><img src="https://badgen.net/badge/support/forum/yellow"></a>
+  <a href="https://contributte.org/partners.html"><img src="https://badgen.net/badge/sponsor/donations/F96854"></a>
+</p>
+
+<p align=center>
+Website 🚀 <a href="https://contributte.org">contributte.org</a> | Contact 👨🏻‍💻 <a href="https://f3l1x.io">f3l1x.io</a> | Twitter 🐦 <a href="https://twitter.com/contributte">@contributte</a>
+</p>
 
 ![Tab](/.docs/assets/tab.png?raw=true)
 
 ![Panel](/.docs/assets/panel.png?raw=true)
 
-[![Build Status](https://img.shields.io/travis/contributte/guzzlette.svg?style=flat-square)](https://travis-ci.org/contributte/guzzlette)
-[![Code coverage](https://img.shields.io/coveralls/contributte/guzzlette.svg?style=flat-square)](https://coveralls.io/r/contributte/guzzlette)
-[![Licence](https://img.shields.io/packagist/l/contributte/guzzlette.svg?style=flat-square)](https://packagist.org/packages/contributte/guzzlette)
-[![Downloads this Month](https://img.shields.io/packagist/dm/contributte/guzzlette.svg?style=flat-square)](https://packagist.org/packages/contributte/guzzlette)
-[![Downloads total](https://img.shields.io/packagist/dt/contributte/guzzlette.svg?style=flat-square)](https://packagist.org/packages/contributte/guzzlette)
-[![Latest stable](https://img.shields.io/packagist/v/contributte/guzzlette.svg?style=flat-square)](https://packagist.org/packages/contributte/guzzlette)
-[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
+## Usage
 
-## Discussion / Help
+To install latest version of `contributte/guzzlette` use [Composer](https://getcomposer.com).
 
-[![Join the chat](https://img.shields.io/gitter/room/contributte/contributte.svg?style=flat-square)](http://bit.ly/ctteg)
+```
+composer install contributte/guzzlette
+```
 
 ## Documentation
 
-- [Setup](.docs/README.md#usage)
-- [Configuration](.docs/README.md#configuration)
-- [Implementation](.docs/README.md#implementation)
+For details on how to use this package, check out our [documentation](.docs).
 
 ## Versions
 
-| State       | Version | Branch   | Nette | PHP     | |
-|-------------|---------|----------|-------|---------|-|
-| dev         | `^3.2`  | `master` | 3.0+  | `>=7.2`  | |
-| stable      | `^3.1`  | `master` | 3.0+  | `^7.2`  | |
-| stable      | `^2.0`  | `master` | 2.4   | `>=7.1` | |
-| stable      | `^1.1`  | `master` | 2.4   | `>=5.6` | (old namespace) |
+| State       | Version | Branch   | Nette | PHP     |
+|-------------|---------|----------|-------|---------|
+| dev         | `^3.3`  | `master` | 3.0+  | `>=7.2`  |
+| stable      | `^3.2`  | `master` | 3.0+  | `>=7.2`  |
+| stable      | `^2.0`  | `master` | 2.4   | `>=7.1` |
 
-## Maintainers
+## Development
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/f3l1x">
-            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=150">
-        </a>
-        </br>
-        <a href="https://github.com/f3l1x">Milan Felix Šulc</a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/matyx">
-            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/7956225?s=150&v=4">
-        </a>
-        </br>
-        <a href="https://github.com/matyx">Martin Matyx Macho</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+See [how to contribute](https://contributte.org) to this package. This package is currently maintained by these authors.
 
-Thank you for testing, reporting and contributing.
+<a href="https://github.com/f3l1x">
+    <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
+</a>
+
+<a href="https://github.com/matyx">
+    <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/7956225?v=3&s=80">
+</a>
+
+-----
+
+Consider to [support](https://contributte.com/partners) **contributte** development team.
+Also thank you for using this package.
