@@ -22,6 +22,7 @@ class Panel implements Tracy\IBarPanel
 			return '';
 		}
 
+		// phpcs:disable
 		$snapshotStack = $this->snapshotStack;
 
 		ob_start();
@@ -31,6 +32,7 @@ class Panel implements Tracy\IBarPanel
 
 	public function getPanel(): string
 	{
+		// phpcs:disable
 		$snapshots = $this->snapshotStack->getSnapshots();
 
 		ob_start();
