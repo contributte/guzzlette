@@ -28,7 +28,7 @@ Website ðŸš€ <a href="https://contributte.org">contributte.org</a> | Contact ðŸ‘
 To install latest version of `contributte/guzzlette` use [Composer](https://getcomposer.com).
 
 ```
-composer install contributte/guzzlette
+composer require contributte/guzzlette
 ```
 
 ## Documentation
