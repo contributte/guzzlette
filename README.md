@@ -18,9 +18,10 @@
 Website 🚀 <a href="https://contributte.org">contributte.org</a> | Contact 👨🏻‍💻 <a href="https://f3l1x.io">f3l1x.io</a> | Twitter 🐦 <a href="https://twitter.com/contributte">@contributte</a>
 </p>
 
-![Tab](/.docs/assets/tab.png?raw=true)
-
-![Panel](/.docs/assets/panel.png?raw=true)
+<p align=center>
+  <img src="https://github.com/contributte/guzzlette/blob/master/.docs/assets/tab.png">
+  <img src="https://github.com/contributte/guzzlette/blob/master/.docs/assets/panel.png">
+</p>
 
 ## Usage
 
@@ -38,8 +39,8 @@ For details on how to use this package, check out our [documentation](.docs).
 
 | State       | Version | Branch   | Nette | PHP     |
 |-------------|---------|----------|-------|---------|
-| dev         | `^3.3`  | `master` | 3.0+  | `>=7.2`  |
-| stable      | `^3.2`  | `master` | 3.0+  | `>=7.2`  |
+| dev         | `^3.3`  | `master` | 3.0+  | `>=7.2` |
+| stable      | `^3.2`  | `master` | 3.0+  | `>=7.2` |
 | stable      | `^2.0`  | `master` | 2.4   | `>=7.1` |
 
 ## Development
@@ -48,10 +49,6 @@ See [how to contribute](https://contributte.org) to this package. This package i
 
 <a href="https://github.com/f3l1x">
     <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
-</a>
-
-<a href="https://github.com/matyx">
-    <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/7956225?v=3&s=80">
 </a>
 
 -----
