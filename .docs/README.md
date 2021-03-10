@@ -14,18 +14,18 @@
 composer require contributte/guzzlette
 ```
 
-```yaml
+```neon
 extensions:
-    guzzle: Contributte\Guzzlette\DI\GuzzleExtension
+	guzzle: Contributte\Guzzlette\DI\GuzzleExtension
 ```
 
 ## Configuration
 
-```yaml
+```neon
 guzzle:
-    debug: %debugMode%
-    client: # config for GuzzleHttp\Client
-        timeout: 30
+	debug: %debugMode%
+	client: # config for GuzzleHttp\Client
+		timeout: 30
 ```
 
 ## Implementation
@@ -41,21 +41,21 @@ use Nette\Application\UI\Presenter;
 
 class ExamplePresenter extends Presenter {
 
-    /** @var Client */
-    private $guzzle;
+	/** @var Client */
+	private $guzzle;
 
-    public function injectGuzzle(Client $guzzle): void
-    {
-        $this->guzzle = $guzzle
-    }
+	public function injectGuzzle(Client $guzzle): void
+	{
+		$this->guzzle = $guzzle
+	}
 
-    // Alternatively you could create new instance through ClientFactory
-    public function injectGuzzle(ClientFactory $factory): void
-    {
-        $this->guzzle = $factory->createClient([
-            'timeout' => 30
-        ]);
-    }
+	// Alternatively you could create new instance through ClientFactory
+	public function injectGuzzle(ClientFactory $factory): void
+	{
+		$this->guzzle = $factory->createClient([
+			'timeout' => 30
+		]);
+	}
 
 }
 ```
