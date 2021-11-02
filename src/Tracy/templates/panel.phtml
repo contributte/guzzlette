@@ -1,73 +1,111 @@
-<h1>Guzzle</h1>
+<?php
+declare(strict_types=1);
+
+use Contributte\Guzzlette\Snapshot;
+use Nette\Utils\Json;
+use Nette\Utils\JsonException;
+use Tracy\Dumper;
+use Tracy\Helpers;
+use Nette\Http\Url;
+/** @var Snapshot[] $snapshots */
+
+?>
+<h1 title="guzzlehttp">Guzzle</h1>
 <div class="tracy-inner">
-	<table style="width: 100%;">
-		<tr>
-			<th>Request</th>
-			<th>Reponse</th>
-			<th>Time</th>
-		</tr>
-		<?php foreach ($snapshots as $counter => $snapshot) {
-			?>
-			<?php $response = $snapshot->getResponse(); ?>
-			<?php $request = $snapshot->getRequest(); ?>
-
+	<div class="tracy-inner-container">
+		<table class="tracy-sortable">
 			<tr>
-				<td>
-					<?= htmlspecialchars($request->getMethod(), ENT_QUOTES); ?>
-					<?= htmlspecialchars($request->getUri(), ENT_QUOTES); ?>
-					<br>
-
-					<strong>Headers:</strong>
-					<?= \Tracy\Dumper::toHtml($request->getHeaders(), [
-						\Tracy\Dumper::COLLAPSE_COUNT => 1,
-						\Tracy\Dumper::COLLAPSE => 1,
-					]); ?>
-					<br>
-
-					<strong>Body:</strong>
-					<?php if (isset($request->getHeader('Content-Type')[0]) && strpos($request->getHeader('Content-Type')[0], 'application/json') !== false) {
-						?>
-						<?= \Tracy\Dumper::toHtml(json_decode($request->getBody(), true), [Tracy\Dumper::COLLAPSE_COUNT => 1, Tracy\Dumper::COLLAPSE => 1]); ?>
-					<?php } else {
-						?>
-						<?= \Tracy\Dumper::toHtml((string) $request->getBody(), [Tracy\Dumper::COLLAPSE_COUNT => 1, Tracy\Dumper::COLLAPSE => 1]); ?>
-						<?php
-
-					} ?>
-				</td>
-				<td>
-					<?= htmlspecialchars($response->getStatusCode(), ENT_QUOTES); ?>
-					<?= htmlspecialchars($response->getReasonPhrase(), ENT_QUOTES); ?>
-					<br>
-
-					<strong>Headers:</strong>
-					<?= \Tracy\Dumper::toHtml($response->getHeaders(), [
-						\Tracy\Dumper::COLLAPSE_COUNT => 1,
-						\Tracy\Dumper::COLLAPSE => 1,
-					]); ?>
-					<br>
-
-					<strong>Body:</strong>
-					<?php if ($response->getHeader('Content-Type') && strpos($response->getHeader('Content-Type')[0], 'application/json') !== false) {
-						?>
-						<?= \Tracy\Dumper::toHtml(json_decode($response->getBody(), true), [
-							\Tracy\Dumper::COLLAPSE_COUNT => 1,
-							\Tracy\Dumper::COLLAPSE => 1,
-						]); ?>
-					<?php } else {
-						?>
-						<?= \Tracy\Dumper::toHtml((string) $response->getBody(), [
-							\Tracy\Dumper::COLLAPSE_COUNT => 1,
-							\Tracy\Dumper::COLLAPSE => 1,
-						]); ?>
-						<?php
-
-					} ?>
-				</td>
-				<td><?= ($snapshot->getTime() ? sprintf('%0.1f ms', $snapshot->getTime() * 1000) : ''); ?></td>
+				<th>Request</th>
+				<th>Reponse</th>
+				<th>Time ms</th>
 			</tr>
-			<?php
+			<?php foreach ($snapshots as $counter => $snapshot): ?>
+				<?php $response = $snapshot->getResponse(); ?>
+				<?php $request = $snapshot->getRequest(); ?>
 
-		} ?>
-	</table>
+				<tr>
+					<td>
+						<?= Helpers::escapeHtml($request->getMethod()); ?>
+						<?= Helpers::escapeHtml($request->getUri()); ?>
+						<br>
+
+						<strong>Headers:</strong>
+						<?= Dumper::toHtml($request->getHeaders(), [
+							Dumper::COLLAPSE_COUNT => 1,
+							Dumper::COLLAPSE => true,
+							Dumper::LAZY => false,
+						]); ?>
+						<br>
+
+
+						<?php $query = Url::parseQuery((string) $request->getUri()->getQuery()); ?>
+						<?php if (!empty($query)) { ?>
+							<strong>Query (GET):</strong>
+							<?= Dumper::toHtml($query, [
+								Dumper::LAZY => false,
+							]); ?>
+							<br>
+						<?php } ?>
+
+
+						<?php if ($request->getMethod() === 'POST' && isset($request->getHeader('Content-Type')[0]) && strpos($request->getHeader('Content-Type')[0], 'application/x-www-form-urlencoded') !== false) { ?>
+							<strong>Form parms (POST):</strong>
+							<?= Dumper::toHtml(Url::parseQuery((string) $request->getBody()), [
+								Dumper::LAZY => false,
+							]); ?>
+						<?php } else { ?>
+							<strong>Body:</strong>
+							<?php if (isset($request->getHeader('Content-Type')[0]) && strpos($request->getHeader('Content-Type')[0], 'application/json') !== false) { ?>
+								<?php try { ?>
+									<?= Dumper::toHtml(Json::decode((string) $request->getBody(), Json::FORCE_ARRAY), [
+										Dumper::LAZY => false,
+									]); ?>
+								<?php } catch (JsonException) { ?>
+									<?= Dumper::toHtml((string) $request->getBody(), [
+										Dumper::LAZY => false,
+									]); ?>
+								<?php } ?>
+							<?php } else { ?>
+								<?= Dumper::toHtml((string) $request->getBody(), [
+									Dumper::LAZY => false,
+								]); ?>
+							<?php } ?>
+						<?php } ?>
+					</td>
+					<td>
+						<?= Helpers::escapeHtml($response->getStatusCode()); ?>
+						<?= Helpers::escapeHtml($response->getReasonPhrase()); ?>
+						<br>
+
+						<strong>Headers:</strong>
+						<?= Dumper::toHtml($response->getHeaders(), [
+							Dumper::COLLAPSE_COUNT => 1,
+							Dumper::COLLAPSE => true,
+							Dumper::LAZY => false,
+						]); ?>
+						<br>
+
+						<strong>Body:</strong>
+						<?php if ($response->getHeader('Content-Type') && strpos($response->getHeader('Content-Type')[0], 'application/json') !== false) {
+							?>
+							<?php try { ?>
+								<?=
+								Dumper::toHtml(Json::decode((string) $response->getBody(), Json::FORCE_ARRAY), [
+									Dumper::LAZY => false,
+								]); ?>
+							<?php } catch (JsonException) { ?>
+								<?= Dumper::toHtml((string) $response->getBody()); ?>
+							<?php } ?>
+						<?php } else {
+							?>
+							<?= Dumper::toHtml((string) $response->getBody()); ?>
+							<?php
+
+						} ?>
+					</td>
+					<td><?= ($snapshot->getTime() ? sprintf('%0.3f', $snapshot->getTime() * 1000) : '0'); ?></td>
+				</tr>
+			<?php endforeach ?>
+		</table>
+	</div>
 </div>
