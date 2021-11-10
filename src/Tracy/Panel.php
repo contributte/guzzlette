@@ -20,6 +20,7 @@ class Panel implements Tracy\IBarPanel
 	public function getTab(): string
 	{
 		return Helpers::capture(function (): void {
+			// phpcs:disable
 			$totalTime = $this->snapshotStack->getTotalTime();
 			$count = $this->snapshotStack->getNumberOfSnapshots();
 			require __DIR__ . '/templates/tab.phtml';
@@ -36,6 +37,7 @@ class Panel implements Tracy\IBarPanel
 		}
 
 		return Helpers::capture(function (): void {
+			// phpcs:disable
 			$snapshots = $this->snapshotStack->getSnapshots();
 			require __DIR__ . '/templates/panel.phtml';
 		});

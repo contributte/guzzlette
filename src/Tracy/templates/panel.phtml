@@ -60,7 +60,7 @@ use Nette\Http\Url;
 									<?= Dumper::toHtml(Json::decode((string) $request->getBody(), Json::FORCE_ARRAY), [
 										Dumper::LAZY => false,
 									]); ?>
-								<?php } catch (JsonException) { ?>
+								<?php } catch (JsonException $e) { ?>
 									<?= Dumper::toHtml((string) $request->getBody(), [
 										Dumper::LAZY => false,
 									]); ?>
@@ -93,7 +93,7 @@ use Nette\Http\Url;
 								Dumper::toHtml(Json::decode((string) $response->getBody(), Json::FORCE_ARRAY), [
 									Dumper::LAZY => false,
 								]); ?>
-							<?php } catch (JsonException) { ?>
+							<?php } catch (JsonException $e) { ?>
 								<?= Dumper::toHtml((string) $response->getBody()); ?>
 							<?php } ?>
 						<?php } else {
