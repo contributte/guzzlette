@@ -1,5 +1,4 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
 namespace Contributte\Guzzlette\Tracy;
 
@@ -20,20 +19,24 @@ class Panel implements Tracy\IBarPanel
 
 	public function getTab(): string
 	{
-		return Helpers::capture(function() {
+		return Helpers::capture(function (): void {
 			$totalTime = $this->snapshotStack->getTotalTime();
-			$count = count($this->snapshotStack->getSnapshots());
+			$count = $this->snapshotStack->getNumberOfSnapshots();
 			require __DIR__ . '/templates/tab.phtml';
 		});
 	}
 
+	/**
+	 * @return string|null
+	 */
 	public function getPanel(): ?string
 	{
-		$snapshots = $this->snapshotStack->getSnapshots();
-		if (count($snapshots) === 0) {
+		if ($this->snapshotStack->getNumberOfSnapshots() === 0) {
 			return null;
 		}
-		return Helpers::capture(function() use ($snapshots) {
+
+		return Helpers::capture(function (): void {
+			$snapshots = $this->snapshotStack->getSnapshots();
 			require __DIR__ . '/templates/panel.phtml';
 		});
 	}
