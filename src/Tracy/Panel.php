@@ -22,17 +22,14 @@ class Panel implements Tracy\IBarPanel
 		return Helpers::capture(function (): void {
 			// phpcs:disable
 			$totalTime = $this->snapshotStack->getTotalTime();
-			$count = $this->snapshotStack->getNumberOfSnapshots();
+			$count = count($this->snapshotStack->getSnapshots());
 			require __DIR__ . '/templates/tab.phtml';
 		});
 	}
 
-	/**
-	 * @return string|null
-	 */
 	public function getPanel(): ?string
 	{
-		if ($this->snapshotStack->getNumberOfSnapshots() === 0) {
+		if (count($this->snapshotStack->getSnapshots()) === 0) {
 			return null;
 		}
 

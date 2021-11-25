@@ -30,12 +30,4 @@ class SnapshotStack
 		return $this->snapshots;
 	}
 
-	/**
-	 * @return int
-	 */
-	public function getNumberOfSnapshots(): int
-	{
-		return count($this->snapshots);
-	}
-
 }

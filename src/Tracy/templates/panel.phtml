@@ -6,7 +6,6 @@ use Nette\Utils\Json;
 use Nette\Utils\JsonException;
 use Tracy\Dumper;
 use Tracy\Helpers;
-use Nette\Http\Url;
 /** @var Snapshot[] $snapshots */
 
 ?>
@@ -37,8 +36,8 @@ use Nette\Http\Url;
 						]); ?>
 						<br>
 
-
-						<?php $query = Url::parseQuery((string) $request->getUri()->getQuery()); ?>
+						<?php $query = []; ?>
+						<?php parse_str((string) $request->getUri()->getQuery(), $query); ?>
 						<?php if (!empty($query)) { ?>
 							<strong>Query (GET):</strong>
 							<?= Dumper::toHtml($query, [
@@ -49,8 +48,10 @@ use Nette\Http\Url;
 
 
 						<?php if ($request->getMethod() === 'POST' && isset($request->getHeader('Content-Type')[0]) && strpos($request->getHeader('Content-Type')[0], 'application/x-www-form-urlencoded') !== false) { ?>
-							<strong>Form parms (POST):</strong>
-							<?= Dumper::toHtml(Url::parseQuery((string) $request->getBody()), [
+							<strong>Form params (POST):</strong>
+							<?php $form_params = []; ?>
+							<?php parse_str((string) $request->getBody(), $form_params); ?>
+							<?= Dumper::toHtml(empty($form_params) ? (string) $request->getBody() : $form_params, [
 								Dumper::LAZY => false,
 							]); ?>
 						<?php } else { ?>
