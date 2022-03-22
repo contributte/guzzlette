@@ -5,9 +5,12 @@ namespace Tests\Contributte\Guzzlette;
 use Contributte\Guzzlette\ClientFactory;
 use Contributte\Guzzlette\SnapshotStack;
 use Contributte\Guzzlette\Tracy\Panel;
+use Contributte\Guzzlette\Snapshot;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -34,13 +37,19 @@ class TracyPanelTest extends TestCase
 		$client = $factory->createClient(['handler' => $handler]);
 
 		$panel = new Panel($snapshotStack);
-		Assert::same('', $panel->getTab());
+		Assert::contains('fill="#aaa"', $panel->getTab());
+		Assert::null($panel->getPanel());
 
 		$client->request('GET', '/');
 		$client->request('GET', '/');
 
 		Assert::same(2, count($snapshotStack->getSnapshots()));
-		Assert::notSame('', $panel->getTab());
+		Assert::contains('fill="#6bcbfd"', $panel->getTab());
+
+		$snapshot = $snapshotStack->getSnapshots()[1];
+		Assert::type(Snapshot::class, $snapshot);
+		Assert::type(RequestInterface::class, $snapshot->getRequest());
+		Assert::type(ResponseInterface::class, $snapshot->getResponse());
 
 		// Is panel rendering OK?
 		$panel->getPanel();
