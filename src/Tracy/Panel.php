@@ -3,12 +3,13 @@
 namespace Contributte\Guzzlette\Tracy;
 
 use Contributte\Guzzlette\SnapshotStack;
+use Nette\Utils\Helpers;
 use Tracy;
 
 class Panel implements Tracy\IBarPanel
 {
 
-	/** @var  SnapshotStack */
+	/** @var SnapshotStack */
 	protected $snapshotStack;
 
 	public function __construct(SnapshotStack $snapshotStack)
@@ -18,26 +19,25 @@ class Panel implements Tracy\IBarPanel
 
 	public function getTab(): string
 	{
-		if ($this->snapshotStack->getSnapshots() === []) {
-			return '';
-		}
-
-		// phpcs:disable
-		$snapshotStack = $this->snapshotStack;
-
-		ob_start();
-		require __DIR__ . '/templates/tab.phtml';
-		return (string) ob_get_clean();
+		return Helpers::capture(function (): void {
+			// phpcs:disable
+			$totalTime = $this->snapshotStack->getTotalTime();
+			$count = count($this->snapshotStack->getSnapshots());
+			require __DIR__ . '/templates/tab.phtml';
+		});
 	}
 
-	public function getPanel(): string
+	public function getPanel(): ?string
 	{
-		// phpcs:disable
-		$snapshots = $this->snapshotStack->getSnapshots();
+		if (count($this->snapshotStack->getSnapshots()) === 0) {
+			return null;
+		}
 
-		ob_start();
-		require __DIR__ . '/templates/panel.phtml';
-		return (string) ob_get_clean();
+		return Helpers::capture(function (): void {
+			// phpcs:disable
+			$snapshots = $this->snapshotStack->getSnapshots();
+			require __DIR__ . '/templates/panel.phtml';
+		});
 	}
 
 }
