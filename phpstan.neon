@@ -5,3 +5,8 @@ includes:
 	- vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
+	level: 9
+	paths:
+		- src
+	ignoreErrors:
+		- '#^Return type \(string\|null\) of method Contributte\\Guzzlette\\Tracy\\Panel::getPanel\(\) should be covariant with return type \(string\) of method Tracy\\IBarPanel::getPanel\(\)$#'

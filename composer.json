@@ -25,13 +25,13 @@
     "tracy/tracy": "^2.8.0"
   },
   "require-dev": {
-    "mockery/mockery": "^1.0",
-    "ninjify/nunjuck": "^0.4",
-    "ninjify/qa": "^0.12",
-    "phpstan/phpstan": "^1.0",
-    "phpstan/phpstan-deprecation-rules": "^1.0",
-    "phpstan/phpstan-nette": "^1.0",
-    "phpstan/phpstan-strict-rules": "^1.0"
+    "mockery/mockery": "^1.3.6",
+    "ninjify/nunjuck": "^0.4.0",
+    "ninjify/qa": "^v0.13.0",
+    "phpstan/phpstan": "^1.8.11",
+    "phpstan/phpstan-deprecation-rules": "^1.0.0",
+    "phpstan/phpstan-nette": "^1.1.0",
+    "phpstan/phpstan-strict-rules": "^1.4.4"
   },
   "autoload": {
     "psr-4": {
@@ -43,7 +43,8 @@
   "config": {
     "sort-packages": true,
     "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "phpstan/extension-installer": true
     }
   },
   "extra": {
