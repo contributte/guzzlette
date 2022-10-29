@@ -29,7 +29,7 @@ class Panel implements Tracy\IBarPanel
 
 	public function getPanel(): ?string
 	{
-		if (count($this->snapshotStack->getSnapshots()) === 0) {
+		if ($this->snapshotStack->getSnapshots() === []) {
 			return null;
 		}
 

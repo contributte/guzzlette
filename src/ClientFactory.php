@@ -28,8 +28,12 @@ class ClientFactory
 	public function createClient(array $config = []): Client
 	{
 		if ($this->debug) {
-			$handler = $this->createHandlerStack($config['handler'] ?? null);
-			$config['handler'] = $handler;
+			$handlerStack = $config['handler'] ?? null;
+			if (!($handlerStack instanceof HandlerStack)) {
+				$handlerStack = null;
+			}
+
+			$config['handler'] = $this->createHandlerStack($handlerStack);
 		}
 
 		return new Client($config);

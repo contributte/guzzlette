@@ -3,9 +3,9 @@
 namespace Tests\Contributte\Guzzlette;
 
 use Contributte\Guzzlette\ClientFactory;
+use Contributte\Guzzlette\Snapshot;
 use Contributte\Guzzlette\SnapshotStack;
 use Contributte\Guzzlette\Tracy\Panel;
-use Contributte\Guzzlette\Snapshot;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
