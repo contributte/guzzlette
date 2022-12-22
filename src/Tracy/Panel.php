@@ -27,10 +27,10 @@ class Panel implements Tracy\IBarPanel
 		});
 	}
 
-	public function getPanel(): ?string
+	public function getPanel(): string
 	{
 		if ($this->snapshotStack->getSnapshots() === []) {
-			return null;
+			return '';
 		}
 
 		return Helpers::capture(function (): void {

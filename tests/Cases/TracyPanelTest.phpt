@@ -38,7 +38,7 @@ class TracyPanelTest extends TestCase
 
 		$panel = new Panel($snapshotStack);
 		Assert::contains('fill="#aaa"', $panel->getTab());
-		Assert::null($panel->getPanel());
+		Assert::equal('', $panel->getPanel());
 
 		$client->request('GET', '/');
 		$client->request('GET', '/');
