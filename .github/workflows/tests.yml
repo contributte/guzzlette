@@ -38,5 +38,11 @@ jobs:
     name: "Nette Tester"
     uses: contributte/.github/.github/workflows/nette-tester.yml@v1
     with:
-        php: "7.2"
-        composer: "composer update --no-interaction --no-progress --prefer-dist --prefer-stable --prefer-lowest"
+      php: "7.2"
+
+  testlowest:
+    name: "Nette Tester"
+    uses: contributte/.github/.github/workflows/nette-tester.yml@v1
+    with:
+      php: "7.2"
+      composer: "composer update --no-interaction --no-progress --prefer-dist --prefer-stable --prefer-lowest"
