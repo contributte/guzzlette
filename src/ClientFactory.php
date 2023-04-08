@@ -10,11 +10,9 @@ class ClientFactory
 
 	public const FORCE_REQUEST_COLLECTION = true;
 
-	/** @var SnapshotStack */
-	private $snapshotStack;
+	private SnapshotStack $snapshotStack;
 
-	/** @var bool */
-	private $debug;
+	private bool $debug;
 
 	public function __construct(SnapshotStack $snapshotStack, bool $debug = false)
 	{

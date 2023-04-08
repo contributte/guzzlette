@@ -8,14 +8,11 @@ use Psr\Http\Message\ResponseInterface;
 class Snapshot
 {
 
-	/** @var RequestInterface */
-	private $request;
+	private RequestInterface $request;
 
-	/** @var ResponseInterface */
-	private $response;
+	private ResponseInterface $response;
 
-	/** @var float */
-	private $time;
+	private float $time;
 
 	public function __construct(RequestInterface $request, ResponseInterface $response, float $time)
 	{

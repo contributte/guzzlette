@@ -6,10 +6,9 @@ class SnapshotStack
 {
 
 	/** @var Snapshot[] */
-	private $snapshots = [];
+	private array $snapshots = [];
 
-	/** @var float */
-	private $totalTime = 0;
+	private float $totalTime = 0;
 
 	public function getTotalTime(): float
 	{

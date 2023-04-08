@@ -8,8 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 class GuzzleHandler
 {
 
-	/** @var SnapshotStack */
-	private $snapshotStack;
+	private SnapshotStack $snapshotStack;
 
 	public function __construct(SnapshotStack $snapshotStack)
 	{

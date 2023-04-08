@@ -4,13 +4,12 @@ namespace Contributte\Guzzlette\Tracy;
 
 use Contributte\Guzzlette\SnapshotStack;
 use Nette\Utils\Helpers;
-use Tracy;
+use Tracy\IBarPanel;
 
-class Panel implements Tracy\IBarPanel
+class Panel implements IBarPanel
 {
 
-	/** @var SnapshotStack */
-	protected $snapshotStack;
+	protected SnapshotStack $snapshotStack;
 
 	public function __construct(SnapshotStack $snapshotStack)
 	{
