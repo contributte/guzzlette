@@ -27,8 +27,8 @@
   },
   "require-dev": {
     "mockery/mockery": "^1.5.1",
-    "ninjify/nunjuck": "^0.4",
-    "ninjify/qa": "^0.13",
+    "contributte/tester": "^0.1.0",
+    "contributte/qa": "^0.4.0",
     "phpstan/phpstan": "^1.9.4",
     "phpstan/phpstan-deprecation-rules": "^1.1.1",
     "phpstan/phpstan-nette": "^1.2.0",
