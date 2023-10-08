@@ -57,6 +57,28 @@ class GuzzleExtensionTest extends TestCase
 		Assert::count(1, $container->findByType(ClientFactory::class));
 	}
 
+	public function testExtensionDynamic(): void
+	{
+		$loader = new ContainerLoader(TEMP_DIR, true);
+		$class = $loader->load(function (Compiler $compiler): void {
+			$compiler->setDynamicParameterNames(['guzzle-client']);
+			$compiler->addConfig([
+				'parameters'=>[
+				    'guzzle-client' => [],
+				],
+				'guzzle' => [
+					'client' => '%guzzle-client%'
+				],
+			]);
+			$compiler->addExtension('guzzle', new GuzzleExtension());
+		}, [getmypid(), 1]);
+
+		/** @var Container $container */
+		$container = new $class();
+
+		Assert::count(1, $container->findByType(Client::class));
+		Assert::count(1, $container->findByType(ClientFactory::class));
+	}
 }
 
 (new GuzzleExtensionTest())->run();
