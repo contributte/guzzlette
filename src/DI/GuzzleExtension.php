@@ -21,7 +21,7 @@ class GuzzleExtension extends CompilerExtension
 	{
 		return Expect::structure([
 			'debug' => Expect::bool(false),
-			'client' => Expect::array()->default([
+			'client' => Expect::array()->dynamic()->default([
 				'timeout' => 30,
 			]),
 		]);
