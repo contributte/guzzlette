@@ -6,7 +6,7 @@ includes:
 
 parameters:
 	level: 9
-	phpVersion: 80000
+	phpVersion: 80200
 
 	scanDirectories:
 		- src
@@ -18,3 +18,4 @@ parameters:
 		- src
 
 	ignoreErrors:
+		- '#Call to an undefined method Nette\\Schema\\Elements\\Structure\|Nette\\Schema\\Elements\\Type::dynamic\(\)#'
