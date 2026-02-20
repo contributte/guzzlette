@@ -56,3 +56,25 @@ Toolkit::test(function (): void {
 	Assert::same(0, count($snapshotStack->getSnapshots()));
 	Assert::same(0.0, $snapshotStack->getTotalTime());
 });
+
+Toolkit::test(function (): void {
+	$snapshotStack = new SnapshotStack();
+	$factory = new ClientFactory($snapshotStack);
+
+	$mock = new MockHandler([
+		new Response(200),
+	]);
+
+	$handler = HandlerStack::create($mock);
+
+	$client = $factory
+		->withUserAgent('Guzzlette/1.0')
+		->withBaseUri('https://example.com')
+		->withHttpAuth('john', 'doe')
+		->create($handler)
+		->build();
+
+	Assert::same('https://example.com', (string) $client->getConfig('base_uri'));
+	Assert::same('Guzzlette/1.0', $client->getConfig('headers')['User-Agent']);
+	Assert::same(['john', 'doe'], $client->getConfig('auth'));
+});

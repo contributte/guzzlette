@@ -24,6 +24,13 @@ extensions:
 ```neon
 guzzle:
 	debug: %debugMode%
+	tracy: %debugMode%
+	preset: default
+	app: MyApp/1.0
+	logger:
+		level: info
+		formatter: "[{method}] {uri} {code}"
+		# logger: @Psr\Log\LoggerInterface
 	client: # config for GuzzleHttp\Client
 		timeout: 30
 ```
@@ -36,6 +43,7 @@ Everything else is in Guzzle documentation.
 ```php
 
 use Contributte\Guzzlette\ClientFactory;
+use Contributte\Guzzlette\GuzzleBuilder;
 use GuzzleHttp\Client;
 use Nette\Application\UI\Presenter;
 
@@ -55,6 +63,15 @@ class ExamplePresenter extends Presenter {
 		$this->guzzle = $factory->createClient([
 			'timeout' => 30
 		]);
+	}
+
+	public function injectGuzzleBuilder(ClientFactory $factory): void
+	{
+		$this->guzzle = $factory
+			->create()
+			->withBaseUri('https://api.example.com')
+			->withHttpAuth('john', 'doe')
+			->build();
 	}
 
 }

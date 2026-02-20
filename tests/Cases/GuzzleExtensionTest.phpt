@@ -71,3 +71,25 @@ Toolkit::test(function (): void {
 	Assert::count(1, $container->findByType(Client::class));
 	Assert::count(1, $container->findByType(ClientFactory::class));
 });
+
+Toolkit::test(function (): void {
+	$loader = new ContainerLoader(Environment::getTestDir(), true);
+	$class = $loader->load(function (Compiler $compiler): void {
+		$compiler->addConfig([
+			'guzzle' => [
+				'tracy' => true,
+				'app' => 'AcmeTest/1.0',
+				'logger' => [
+					'formatter' => '[{method}] {uri} {code}',
+				],
+			],
+		]);
+		$compiler->addExtension('guzzle', new GuzzleExtension());
+	}, [getmypid(), 4]);
+
+	/** @var Container $container */
+	$container = new $class();
+
+	Assert::count(1, $container->findByType(Client::class));
+	Assert::count(1, $container->findByType(ClientFactory::class));
+});
