@@ -18,22 +18,12 @@
 Website 🚀 <a href="https://contributte.org">contributte.org</a> | Contact 👨🏻‍💻 <a href="https://f3l1x.io">f3l1x.io</a> | Twitter 🐦 <a href="https://twitter.com/contributte">@contributte</a>
 </p>
 
+Guzzlette integrates [Guzzle](https://github.com/guzzle/guzzle) HTTP client into Nette Framework applications.
+
 <p align=center>
   <img src="https://github.com/contributte/guzzlette/blob/master/.docs/assets/tab.png">
   <img src="https://github.com/contributte/guzzlette/blob/master/.docs/assets/panel.png">
 </p>
-
-## Usage
-
-To install the latest version of `contributte/guzzlette` use [Composer](https://getcomposer.org).
-
-```bash
-composer require contributte/guzzlette
-```
-
-## Documentation
-
-For details on how to use this package, check out our [documentation](.docs).
 
 ## Versions
 
@@ -41,6 +31,75 @@ For details on how to use this package, check out our [documentation](.docs).
 |-------------|---------|----------|-------|---------|
 | dev         | `^3.4`  | `master` | 3.0+  | `>=8.0` |
 | stable      | `^3.3`  | `master` | 3.0+  | `>=8.0` |
+
+## Installation
+
+To install latest version of `contributte/guzzlette` use [Composer](https://getcomposer.org).
+
+```bash
+composer require contributte/guzzlette
+```
+
+Register Guzzlette extension in your NEON configuration.
+
+```neon
+extensions:
+	guzzle: Contributte\Guzzlette\DI\GuzzleExtension
+```
+
+## Configuration
+
+```neon
+guzzle:
+	debug: %debugMode%
+	tracy: %debugMode%
+	preset: default
+	app: MyApp/1.0
+	logger:
+		level: info
+		formatter: "[{method}] {uri} {code}"
+		# logger: @Psr\Log\LoggerInterface
+	client: # config for GuzzleHttp\Client
+		timeout: 30
+```
+
+## Implementation
+
+Get Guzzle from DIC instead of creating a new one.
+Everything else is in [Guzzle documentation](https://docs.guzzlephp.org/).
+
+```php
+use Contributte\Guzzlette\ClientFactory;
+use GuzzleHttp\Client;
+use Nette\Application\UI\Presenter;
+
+class ExamplePresenter extends Presenter
+{
+	private Client $guzzle;
+
+	public function injectGuzzle(Client $guzzle): void
+	{
+		$this->guzzle = $guzzle;
+	}
+
+	// Alternatively you could create new instance through ClientFactory.
+	public function injectGuzzleFactory(ClientFactory $factory): void
+	{
+		$this->guzzle = $factory->createClient([
+			'timeout' => 30,
+		]);
+	}
+
+	public function injectGuzzleBuilder(ClientFactory $factory): void
+	{
+		$this->guzzle = $factory
+			->create()
+			->withBaseUri('https://api.example.com')
+			->withHttpAuth('john', 'doe')
+			->build();
+	}
+}
+```
 
 ## Development
 
