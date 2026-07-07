@@ -21,8 +21,8 @@ Website ðŸš€ <a href="https://contributte.org">contributte.org</a> | Contact ðŸ‘
 Guzzlette integrates [Guzzle](https://github.com/guzzle/guzzle) HTTP client into Nette Framework applications.
 
 <p align=center>
-  <img src="https://github.com/contributte/guzzlette/blob/master/.docs/assets/tab.png">
-  <img src="https://github.com/contributte/guzzlette/blob/master/.docs/assets/panel.png">
+  <img src=".docs/assets/tab.png">
+  <img src=".docs/assets/panel.png">
 </p>
 
 ## Versions
