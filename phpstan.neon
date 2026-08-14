@@ -19,3 +19,9 @@ parameters:
 
 	ignoreErrors:
 		- '#Call to an undefined method Nette\\Schema\\Elements\\Structure\|Nette\\Schema\\Elements\\Type::dynamic\(\)#'
+		# Guzzle 8 types the client config as an exact array shape, the builder collects arbitrary options.
+		# Not reported on Guzzle 7, where the config is a plain array.
+		-
+			message: '#Parameter \#1 \$config of class GuzzleHttp\\Client constructor expects#'
+			path: src/GuzzleBuilder.php
+			reportUnmatched: false

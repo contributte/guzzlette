@@ -7,6 +7,9 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\MessageFormatterInterface;
 use GuzzleHttp\Middleware;
+use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
@@ -29,6 +32,7 @@ class ClientFactory
 
 	private ?MessageFormatterInterface $formatter = null;
 
+	/** @var HandlerStack<callable(RequestInterface, array<array-key, mixed>): PromiseInterface<ResponseInterface, mixed>>|null */
 	private ?HandlerStack $handlerStack = null;
 
 	public function __construct(SnapshotStack $snapshotStack, bool $debug = false)
@@ -47,6 +51,9 @@ class ClientFactory
 		$this->logger = $logger;
 	}
 
+	/**
+	 * @param HandlerStack<callable(RequestInterface, array<array-key, mixed>): PromiseInterface<ResponseInterface, mixed>> $handlerStack
+	 */
 	public function setHandlerStack(HandlerStack $handlerStack): void
 	{
 		$this->handlerStack = $handlerStack;
@@ -129,6 +136,9 @@ class ClientFactory
 		return $this->withConfigOption('auth', [$user, $password]);
 	}
 
+	/**
+	 * @param HandlerStack<callable(RequestInterface, array<array-key, mixed>): PromiseInterface<ResponseInterface, mixed>>|null $handlerStack
+	 */
 	public function create(?HandlerStack $handlerStack = null): GuzzleBuilder
 	{
 		$stack = $handlerStack ?? $this->handlerStack ?? HandlerStack::create();

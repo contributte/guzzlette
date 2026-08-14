@@ -4,15 +4,22 @@ namespace Contributte\Guzzlette;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 class GuzzleBuilder
 {
 
+	/** @var HandlerStack<callable(RequestInterface, array<array-key, mixed>): PromiseInterface<ResponseInterface, mixed>> */
 	private HandlerStack $stack;
 
 	/** @var array<string, mixed> */
 	private array $options = [];
 
+	/**
+	 * @param HandlerStack<callable(RequestInterface, array<array-key, mixed>): PromiseInterface<ResponseInterface, mixed>> $stack
+	 */
 	public function __construct(HandlerStack $stack)
 	{
 		$this->stack = $stack;
