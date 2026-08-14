@@ -20,7 +20,7 @@ Toolkit::test(function (): void {
 
 	$mock = new MockHandler([
 		new Response(200, ['X-Foo' => 'Bar']),
-		new Response(202, ['Content-Length' => 0]),
+		new Response(202, ['Content-Length' => '0']),
 		new RequestException('Error Communicating with Server', new Request('GET', 'test')),
 	]);
 
@@ -42,7 +42,7 @@ Toolkit::test(function (): void {
 
 	$mock = new MockHandler([
 		new Response(200, ['X-Foo' => 'Bar']),
-		new Response(202, ['Content-Length' => 0]),
+		new Response(202, ['Content-Length' => '0']),
 		new RequestException('Error Communicating with Server', new Request('GET', 'test')),
 	]);
 
