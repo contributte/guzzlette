@@ -73,7 +73,6 @@ class ClientFactory
 	{
 		if ($this->logger !== null || $logger !== null) {
 			$resolvedLogger = $logger ?? $this->logger;
-			assert($resolvedLogger !== null);
 
 			return $this->with(
 				Middleware::log(
